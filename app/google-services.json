@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "335816885585",
+    "firebase_url": "https://dellpro-87c12.firebaseio.com",
+    "project_id": "dellpro-87c12",
+    "storage_bucket": "dellpro-87c12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335816885585:android:593469f44f947bafdcbf70",
+        "android_client_info": {
+          "package_name": "com.example.dell_pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335816885585-lit0cgiipat9mvejng80mdoaigedctm7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell_pro",
+            "certificate_hash": "05d6afc87c7b2aa8a3fc03ddf584568808bb8765"
+          }
+        },
+        {
+          "client_id": "335816885585-0jb90gbvfdl6a65kd4pt8sstc5aoqjl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcPlAzrI64ZZYIQuxsSFSs_NP0lsM3aeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335816885585-0jb90gbvfdl6a65kd4pt8sstc5aoqjl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

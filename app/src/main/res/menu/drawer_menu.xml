@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/drawer_notification"
+            android:icon="@drawable/notifications_icon"
+            android:title="Notification" />
+
+        <item
+            android:id="@+id/drawer_setting"
+            android:icon="@drawable/settings_icon"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/drawer_dummy"
+            android:visible="false"/>
+    </group>
+
+    <item android:title="Options">
+        <menu>
+            <item
+                android:id="@+id/drawer_signout"
+                android:icon="@drawable/signout_icon"
+                android:title="Sign Out" />
+            <item
+                android:id="@+id/drawer_help"
+                android:icon="@drawable/help_icon"
+                android:title="Help" />
+            <item
+                android:id="@+id/drawer_contact"
+                android:icon="@drawable/call_icon"
+                android:title="Contact Us" />
+        </menu>
+    </item>
+
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/drawer_terms"
+                android:title="Terms and Conditions" />
+
+            <item
+                android:id="@+id/drawer_feedback"
+                android:title="Feedback" />
+
+            <item
+                android:id="@+id/drawer_about"
+                android:title="About AppName" />
+        </menu>
+    </item>
+</menu>
