@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ImageView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.dell_pro.Authentication.LoginActivity;
+import com.example.dell_pro.authentication.LoginActivity;
 
 public class StartActivity extends AppCompatActivity {
 

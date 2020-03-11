@@ -1,4 +1,4 @@
-package com.example.dell_pro.Authentication;
+package com.example.dell_pro.authentication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
