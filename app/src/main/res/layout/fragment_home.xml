@@ -25,7 +25,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/test"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -76,9 +76,9 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/chat"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -129,7 +129,7 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -142,7 +142,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/nearby"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -166,7 +166,7 @@
                         android:background="@drawable/circle_back"
                         android:backgroundTint="@color/light_black"
                         android:padding="15dp"
-                        android:src="@drawable/device_test" />
+                        android:src="@drawable/travel_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -193,9 +193,9 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/remainder"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -246,7 +246,7 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -259,7 +259,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/video"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -310,9 +310,9 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/bmi_cal"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -336,7 +336,7 @@
                         android:background="@drawable/circle_back"
                         android:backgroundTint="@color/yellow"
                         android:padding="15dp"
-                        android:src="@drawable/clock_icon" />
+                        android:src="@drawable/bmi" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -363,7 +363,7 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

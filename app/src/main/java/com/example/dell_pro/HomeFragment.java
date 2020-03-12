@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment {
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
-    MaterialCardView test,chat,nearby,remainder,video,bmi_cal;
+    CardView test,chat,nearby,remainder,video,bmi_cal;
 
     @Nullable
     @Override
@@ -128,10 +129,10 @@ public class HomeFragment extends Fragment {
         nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getContext(), HealthMapActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                Toast.makeText(getContext(), "Nearby Hospitals", Toast.LENGTH_SHORT).show();
-                //startActivity(intent);
+                Intent intent = new Intent(getContext(), MapsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //Toast.makeText(getContext(), "Health Centres", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
     }
