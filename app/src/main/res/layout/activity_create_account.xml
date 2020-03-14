@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:textColorHint="@color/grey"
+        app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
@@ -58,6 +59,7 @@
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         app:boxStrokeColor="@color/indianred"
+        app:boxBackgroundColor="@color/white"
         app:counterEnabled="true"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true">
@@ -83,6 +85,7 @@
         android:textColorHint="@color/grey"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="10dp"
+        app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
@@ -106,30 +109,27 @@
 
     <Button
         android:id="@+id/sign_up"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/curv_rect_back"
-        android:drawableEnd="@drawable/keyboard_arrow_right"
-        android:onClick="signup_clicked"
-        android:padding="10dp"
+        android:layout_width="wrap_content"
         android:text="Register"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:onClick="signup_clicked"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:textSize="20sp"
+        app:icon="@drawable/keyboard_arrow_right"
+        app:iconGravity="end" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:contentDescription="account_creation"
             android:onClick="cancel_clicked"
-            android:src="@drawable/arrow_left_icon"
+            app:rippleColor="@color/white"
             android:backgroundTint="@color/indianred"
             app:fabSize="normal"
-            app:rippleColor="@color/indianred"/>
+            app:srcCompat="@drawable/arrow_left_icon"
+            app:tint="@color/white" />
 
 </LinearLayout>

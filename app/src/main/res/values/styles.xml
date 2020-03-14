@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/indianred</item>
         <item name="colorPrimaryDark">@color/indianred</item>
@@ -9,7 +9,7 @@
     </style>
 
     <!-- Theme ProgressDialog. -->
-    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="AppCompatAlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorAccent">@color/indianred</item>
         <item name="android:textColorPrimary">@color/indianred</item>
         <item name="android:textColorSecondary">@color/indianred</item>

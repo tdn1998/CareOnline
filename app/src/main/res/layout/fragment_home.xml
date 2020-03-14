@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Medicine Remainder"
+                        android:text="Medicine Reminder"
                         android:textColor="@color/violet"
                         android:textSize="15sp"
                         android:textStyle="bold" />
