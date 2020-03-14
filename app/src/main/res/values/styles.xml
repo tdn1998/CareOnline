@@ -20,4 +20,8 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="Maps" parent="AppTheme">
+        <item name="android:statusBarColor">@color/MEDIUMSEAGREEN</item>
+    </style>
+
 </resources>
