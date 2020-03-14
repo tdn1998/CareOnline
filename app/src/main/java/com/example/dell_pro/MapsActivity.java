@@ -6,10 +6,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewDebug;
@@ -26,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,18 +48,90 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location current_location;
     FusedLocationProviderClient mFusedLocationProviderClient;
 
-    //TextView text;
-
-    //Geocoder geocoder;
+    Chip hosp,clin,store,park,gym;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //text=findViewById(R.id.text);
+        hosp=findViewById(R.id.hosp);
+        clin=findViewById(R.id.clin);
+        store=findViewById(R.id.store);
+        park=findViewById(R.id.park);
+        gym=findViewById(R.id.gym);
 
+        chip_select();
         getLocationPermission();
+    }
+
+    private void chip_select() {
+
+        hosp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat=current_location.getLatitude();
+                double lon=current_location.getLongitude();
+                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                Uri location = Uri.parse("geo:"+latlng+"?q=Hospital");
+                gotomap(location);
+            }
+        });
+
+        clin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat=current_location.getLatitude();
+                double lon=current_location.getLongitude();
+                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                Uri location = Uri.parse("geo:"+latlng+"?q=Clinic");
+                gotomap(location);
+            }
+        });
+
+        store.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat=current_location.getLatitude();
+                double lon=current_location.getLongitude();
+                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                Uri location = Uri.parse("geo:"+latlng+"?q=Medical+Store");
+                gotomap(location);
+            }
+        });
+
+        park.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat=current_location.getLatitude();
+                double lon=current_location.getLongitude();
+                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                Uri location = Uri.parse("geo:"+latlng+"?q=parks");
+                gotomap(location);
+            }
+        });
+
+        gym.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat=current_location.getLatitude();
+                double lon=current_location.getLongitude();
+                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                Uri location = Uri.parse("geo:"+latlng+"?q=gyms");
+                gotomap(location);
+            }
+        });
+    }
+
+    private void gotomap(Uri location) {
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+        PackageManager packageManager = getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
+        boolean isIntentSafe = activities.size() > 0;
+        if (isIntentSafe) {
+            Toast.makeText(this, "You will be redirected to another site.", Toast.LENGTH_SHORT).show();
+            startActivity(mapIntent);
+        }
     }
 
     @Override
@@ -153,28 +229,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
-
-    /*public void search_hospital(View view) {
-        String i="hospital";
-        //text.setText("data get");
-
-        geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
-
-        List<Address> list = new ArrayList<>();
-        try {
-            list = geocoder.getFromLocationName(i,1);
-
-            if(list.size()>0){
-                Address address = list.get(0);
-                text.setText(address.toString());
-
-                moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM);
-                mMap.addMarker(
-                        new MarkerOptions().position(new LatLng(address.getLatitude(),address.getLongitude())));
-            }
-
-        } catch (IOException e) {
-            text.setText(e.getMessage());
-        }
-    }*/
 }
