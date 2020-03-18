@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="horizontal"
     android:padding="10dp">
@@ -19,7 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/red"
-            android:src="@drawable/ambulance_icon" />
+            app:fabSize="normal"
+            app:rippleColor="@color/white"
+            app:srcCompat="@drawable/ambulance_icon"
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/yellow"
-            android:src="@drawable/fire_icon" />
+            app:fabSize="normal"
+            app:rippleColor="@color/white"
+            app:srcCompat="@drawable/fire_icon"
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/light_black"
-            android:src="@drawable/police_icon" />
+            app:fabSize="normal"
+            app:rippleColor="@color/white"
+            app:srcCompat="@drawable/police_icon"
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
