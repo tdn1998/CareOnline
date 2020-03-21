@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,15 +29,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements PanicFragment.PanicListner{
 
-    private static final int REQUEST_CALL = 1;
 
     private BottomNavigationView bot_nav;
 
     private DrawerLayout nav_drawer;
     private NavigationView nav_view;
-
-    private long backpressedtime;
-    private Toast backtoast;
 
     private CircleImageView draw_img;
     private TextView draw_user;
@@ -103,24 +98,13 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
     }
 
     private void makePhoneCall(String number) {
-        if(ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
-        } else{
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             String dial = "tel:" + number;
             startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==REQUEST_CALL){
-            if (grantResults.length > 0 && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Call Permission Granted", Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(this, "Call Permission Denied", Toast.LENGTH_SHORT).show();
-            }
+        } else {
+            StartActivity showSetting = new StartActivity();
+            showSetting.showSettingsDialog();
         }
     }
 
