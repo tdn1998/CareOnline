@@ -110,7 +110,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:text="Register"
         android:textAllCaps="false"
@@ -123,8 +122,7 @@
         app:iconGravity="end" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:onClick="cancel_clicked"

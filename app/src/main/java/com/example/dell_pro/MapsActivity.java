@@ -53,12 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         park=findViewById(R.id.park);
         gym=findViewById(R.id.gym);
 
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            mLocationPermissionGranted = false;
-        }
+        mLocationPermissionGranted = ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
         chip_select();
         check_for_location_enabled();
@@ -71,7 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 double lat=current_location.getLatitude();
                 double lon=current_location.getLongitude();
-                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                final String latlng= lat +","+ lon;
                 Uri location = Uri.parse("geo:"+latlng+"?q=Hospital");
                 gotomap(location);
             }
@@ -82,7 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 double lat=current_location.getLatitude();
                 double lon=current_location.getLongitude();
-                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                final String latlng= lat +","+ lon;
                 Uri location = Uri.parse("geo:"+latlng+"?q=Clinic");
                 gotomap(location);
             }
@@ -93,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 double lat=current_location.getLatitude();
                 double lon=current_location.getLongitude();
-                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                final String latlng= lat +","+ lon;
                 Uri location = Uri.parse("geo:"+latlng+"?q=Medical+Store");
                 gotomap(location);
             }
@@ -104,7 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 double lat=current_location.getLatitude();
                 double lon=current_location.getLongitude();
-                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                final String latlng= lat +","+ lon;
                 Uri location = Uri.parse("geo:"+latlng+"?q=parks");
                 gotomap(location);
             }
@@ -115,7 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 double lat=current_location.getLatitude();
                 double lon=current_location.getLongitude();
-                final String latlng=String.valueOf(lat)+","+String.valueOf(lon);
+                final String latlng= lat +","+ lon;
                 Uri location = Uri.parse("geo:"+latlng+"?q=gyms");
                 gotomap(location);
             }
