@@ -53,6 +53,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <ImageView
+                    android:id="@+id/verification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/setting_username"
+                    android:src="@drawable/verified" />
+
                 <TextView
                     android:id="@+id/setting_email"
                     android:layout_width="wrap_content"
@@ -75,6 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:text="Edit Details"
+                        android:textColor="@color/indianred"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -84,6 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="Verify Email"
+                        android:textColor="@color/indianred"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -97,7 +106,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginEnd="10dp"
+            android:background="@color/indianred"/>
 
     </LinearLayout>
 
