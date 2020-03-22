@@ -78,7 +78,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_emailf);
-            new_emailf.setError("*Email Required!");
+            new_emailf.setError("Email Required");
             new_emailf.requestFocus();
             return;
         }
@@ -88,7 +88,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_emailf);
-            new_emailf.setError("*Enter Valid Email!");
+            new_emailf.setError("Enter Valid Email");
             new_emailf.requestFocus();
             return;
         }
@@ -98,7 +98,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_passf);
-            new_passf.setError("*Password Required!");
+            new_passf.setError("Password Required");
             new_passf.requestFocus();
             return;
         }
@@ -108,7 +108,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_passf);
-            new_passf.setError("*Minimum length should be 6!");
+            new_passf.setError("Minimum length should be 6");
             new_passf.requestFocus();
             return;
         }
@@ -118,7 +118,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_passf1);
-            new_passf1.setError("*Retype Password!");
+            new_passf1.setError("Retype Password");
             new_passf1.requestFocus();
             return;
         }
@@ -128,7 +128,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_passf1);
-            new_passf1.setError("*Minimum length should be 6!");
+            new_passf1.setError("Minimum length should be 6");
             new_passf1.requestFocus();
             return;
         }
@@ -138,7 +138,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(new_passf1);
-            new_passf1.setError("*Password doesn't match!");
+            new_passf1.setError("Password doesn't match");
             new_passf1.requestFocus();
             return;
         }
@@ -165,7 +165,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     dialog.dismiss();
                     Toast.makeText(CreateAccountActivity.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CreateAccountActivity.this, NewProfileActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

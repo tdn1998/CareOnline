@@ -29,9 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements PanicFragment.PanicListner{
 
-
     private BottomNavigationView bot_nav;
-
     private DrawerLayout nav_drawer;
     private NavigationView nav_view;
 
@@ -39,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
     private TextView draw_user;
     private TextView draw_email;
     private FirebaseUser user;
+
+    private long backpressedtime;
+    private Toast backtoast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,5 +209,23 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
     private void panic_button_clicked() {
         PanicFragment panic = new PanicFragment();
         panic.show(getSupportFragmentManager(),"panic options");
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (nav_drawer.isDrawerOpen(GravityCompat.START)) {
+            nav_drawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (backpressedtime + 2000 > System.currentTimeMillis()) {
+                backtoast.cancel();
+                super.onBackPressed();
+                return;
+            } else {
+                backtoast = Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT);
+                backtoast.show();
+            }
+            backpressedtime = System.currentTimeMillis();
+        }
     }
 }

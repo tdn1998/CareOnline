@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(emailf);
-            emailf.setError("*Field Can't be Empty");
+            emailf.setError("Field Can't be Empty");
             emailf.requestFocus();
             return;
         }
@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(emailf);
-            emailf.setError("*Enter Valid Email");
+            emailf.setError("Enter Valid Email");
             emailf.requestFocus();
             return;
         }
@@ -111,17 +111,16 @@ public class LoginActivity extends AppCompatActivity {
                     .duration(500)
                     .repeat(0)
                     .playOn(passf);
-            passf.setError("*Field Can't be Empty");
+            passf.setError("Field Can't be Empty");
             passf.requestFocus();
             return;
         }
-
         if(pass.length()<6){
             YoYo.with(Techniques.Shake)
                     .duration(500)
                     .repeat(0)
                     .playOn(passf);
-            passf.setError("*Minimum length of password should be 6");
+            passf.setError("Minimum length of password should be 6");
             passf.requestFocus();
             return;
         }

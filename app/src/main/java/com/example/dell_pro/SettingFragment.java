@@ -1,6 +1,7 @@
 package com.example.dell_pro;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.dell_pro.authentication.NewProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Callback;
@@ -45,16 +47,16 @@ public class SettingFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         user_showdata();
-        //update_data();
+        update_data();
 
         return v;
     }
 
-    /*private void update_data() {
+    private void update_data() {
         edit_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),NewProfileActivity.class);
+                Intent intent = new Intent(getContext(), NewProfileActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -68,7 +70,7 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
-    }*/
+    }
 
     private void user_showdata() {
         if (user != null) {

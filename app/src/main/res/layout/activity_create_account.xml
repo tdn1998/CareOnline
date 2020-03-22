@@ -70,8 +70,9 @@
             android:drawableStart="@drawable/lock"
             android:drawablePadding="10dp"
             android:hint="Create new Password"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:padding="15dp"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -100,8 +101,9 @@
             android:drawableStart="@drawable/lock"
             android:drawablePadding="10dp"
             android:hint="Confirm new Password"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:padding="15dp"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="15sp" />
 

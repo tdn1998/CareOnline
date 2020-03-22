@@ -5,4 +5,23 @@
     <string name="navigation_drawer_close">Navigation Drawer Close</string>
     <string name="title_activity_maps">Map</string>
 
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="blood_grp">
+        <item>Blood Group</item>
+        <item>A+ve</item>
+        <item>A-ve</item>
+        <item>B+ve</item>
+        <item>B-ve</item>
+        <item>O+ve</item>
+        <item>O-ve</item>
+        <item>AB+ve</item>
+        <item>AB-ve</item>
+    </string-array>
+
 </resources>

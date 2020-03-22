@@ -43,6 +43,7 @@
             android:theme="@style/Main" />
         <activity android:name=".authentication.CreateAccountActivity" />
         <activity android:name=".authentication.LoginActivity" />
+        <activity android:name=".authentication.NewProfileActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
