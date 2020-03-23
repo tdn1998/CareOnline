@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,13 +44,13 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/setting_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CodRed"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -60,43 +60,16 @@
                     android:layout_toRightOf="@+id/setting_username"
                     android:src="@drawable/verified" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/setting_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/setting_username"
                     android:text="codred@gmail.com"
                     android:textColor="@color/grey"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/setting_email"
-                    android:layout_marginTop="8dp">
-
-                    <TextView
-                        android:id="@+id/edit_details"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="Edit Details"
-                        android:textColor="@color/indianred"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/verify_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="Verify Email"
-                        android:textColor="@color/indianred"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -108,6 +81,23 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/indianred"/>
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From CodRed"
+            android:layout_margin="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/indianred"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

@@ -53,7 +53,7 @@
 
             <item
                 android:id="@+id/drawer_about"
-                android:title="About AppName" />
+                android:title="About Care Online" />
         </menu>
     </item>
 </menu>

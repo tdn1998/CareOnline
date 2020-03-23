@@ -19,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.dell_pro.authentication.LoginActivity;
+import com.example.dell_pro.settings.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -152,11 +153,7 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
                         setTitle("Settings");
                         break;
                     case R.id.drawer_signout:
-                        FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
+                        user_signout();
                         break;
                     case R.id.drawer_contact:
                     case R.id.drawer_help:
@@ -170,6 +167,14 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
                 return true;
             }
         });
+    }
+
+    private void user_signout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     //on clicking buttom nav drawer
