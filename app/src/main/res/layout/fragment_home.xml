@@ -100,7 +100,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circle_back"
-                        android:backgroundTint="@color/MEDIUMSEAGREEN"
+                        android:backgroundTint="@color/light_black"
                         android:padding="15dp"
                         android:src="@drawable/call_icon" />
 
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Chat with Doctor"
-                        android:textColor="@color/MEDIUMSEAGREEN"
+                        android:textColor="@color/light_black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_margin="10dp"
-                        android:background="@color/MEDIUMSEAGREEN" />
+                        android:background="@color/light_black" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circle_back"
-                        android:backgroundTint="@color/light_black"
+                        android:backgroundTint="@color/MEDIUMSEAGREEN"
                         android:padding="15dp"
                         android:src="@drawable/travel_icon" />
 
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Nearby Health Services"
-                        android:textColor="@color/light_black"
+                        android:textColor="@color/MEDIUMSEAGREEN"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -181,7 +181,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_margin="10dp"
-                        android:background="@color/light_black" />
+                        android:background="@color/MEDIUMSEAGREEN" />
 
                     <TextView
                         android:layout_width="wrap_content"
