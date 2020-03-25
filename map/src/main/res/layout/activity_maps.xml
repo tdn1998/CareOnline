@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MapsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_map"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/MEDIUMSEAGREEN"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Nearby Health Services" />
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_below="@+id/toolbar_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/hosp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hospitals"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/MEDIUMSEAGREEN"
+                app:chipIcon="@drawable/hospital_pin"
+                app:chipIconSize="10dp"
+                app:chipIconTint="@color/white"
+                app:chipStartPadding="10dp"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/clin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clinics"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/MEDIUMSEAGREEN"
+                app:chipIcon="@drawable/clinics_pin"
+                app:chipIconSize="20dp"
+                app:chipIconTint="@color/white"
+                app:chipStartPadding="10dp"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medical Stores"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/MEDIUMSEAGREEN"
+                app:chipIcon="@drawable/pharmacy_pin"
+                app:chipIconSize="20dp"
+                app:chipIconTint="@color/white"
+                app:chipStartPadding="10dp"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/park"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parks"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/MEDIUMSEAGREEN"
+                app:chipIcon="@drawable/park_pin"
+                app:chipIconSize="20dp"
+                app:chipIconTint="@color/white"
+                app:chipStartPadding="10dp"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gym"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gyms"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/MEDIUMSEAGREEN"
+                app:chipIcon="@drawable/gym_pin"
+                app:chipIconSize="20dp"
+                app:chipIconTint="@color/white"
+                app:chipStartPadding="10dp"
+                app:rippleColor="@color/white" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+</RelativeLayout>

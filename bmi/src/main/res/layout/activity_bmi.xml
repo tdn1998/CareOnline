@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bmi_back"
+    tools:context=".BMIActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/violet"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="BMI Calculator" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/gender_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_bmi"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="GENDER"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender_head"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_margin="20dp"
+                android:text="Male" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_margin="20dp"
+                android:text="Female" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/height_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chip_group"
+            android:layout_margin="20dp"
+            android:text="HEIGHT in cm"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/height_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chip_group"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="000"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/height_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/height_head"
+            android:layout_margin="10dp"
+            android:max="210"
+            android:min="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:thumb="@drawable/seekbar_thumb" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/weight_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/height_seek"
+            android:layout_margin="20dp"
+            android:text="WEIGHT in kg"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/weight_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/height_seek"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="000"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/weight_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weight_head"
+            android:layout_margin="10dp"
+            android:max="150"
+            android:min="20"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:thumb="@drawable/seekbar_thumb" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weight_seek"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:text="*Note: This Calculator shouldn't be used for pregnant woman or children or for accuracy age should above 18."
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/note"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/white"
+            app:fabCustomSize="90dp"
+            app:maxImageSize="50dp"
+            app:rippleColor="@color/light_violet"
+            app:srcCompat="@drawable/arrow_forward"
+            app:tint="@color/violet" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/your_bmi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="YOUR BMI:"
+            android:textColor="@color/light_violet"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bmi_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/your_bmi_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="The BMI Tables"
+            android:textColor="@color/light_violet"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/your_bmi_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/your_bmi_text"
+            android:layout_marginStart="20dp"
+            android:text="00.00"
+            android:textColor="@color/violet"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bmi_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/your_bmi_value"
+            android:layout_marginTop="10dp"
+            android:text="Here the status of Your BMI value will show"
+            android:textAlignment="center"
+            android:textColor="@color/MEDIUMSEAGREEN"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

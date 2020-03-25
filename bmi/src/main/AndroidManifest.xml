@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bmicalculator">
+
+    <application>
+        <activity
+            android:name=".BMITableActivity"
+            android:parentActivityName=".BMIActivity"
+            android:theme="@style/BMITheme" />
+        <activity
+            android:name=".BMIActivity"
+            android:theme="@style/BMITheme" />
+    </application>
+
+</manifest>
