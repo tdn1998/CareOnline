@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.bmicalculator.BMIActivity;
+import com.example.nearbymaps.MapsActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,10 +135,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent = new Intent(getContext(), BMIActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     Toast.makeText(getContext(), "BMI Calculator", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
                 }

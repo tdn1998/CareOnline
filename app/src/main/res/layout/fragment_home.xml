@@ -47,7 +47,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circle_back"
-                        android:backgroundTint="@color/blue"
+                        android:backgroundTint="@color/yellow"
                         android:padding="15dp"
                         android:src="@drawable/device_test" />
 
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Take Personal Checkup"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/yellow"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_margin="10dp"
-                        android:background="@color/blue" />
+                        android:background="@color/yellow" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circle_back"
-                        android:backgroundTint="@color/violet"
+                        android:backgroundTint="@color/blue"
                         android:padding="15dp"
                         android:src="@drawable/clock_icon" />
 
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Medicine Reminder"
-                        android:textColor="@color/violet"
+                        android:textColor="@color/blue"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -234,7 +234,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_margin="10dp"
-                        android:background="@color/violet" />
+                        android:background="@color/blue" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -333,7 +333,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circle_back"
-                        android:backgroundTint="@color/yellow"
+                        android:backgroundTint="@color/violet"
                         android:padding="15dp"
                         android:src="@drawable/bmi" />
 
@@ -342,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="BMI Calculator"
-                        android:textColor="@color/yellow"
+                        android:textColor="@color/violet"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -350,7 +350,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_margin="10dp"
-                        android:background="@color/yellow" />
+                        android:background="@color/violet" />
 
                     <TextView
                         android:layout_width="wrap_content"

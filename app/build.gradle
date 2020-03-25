@@ -48,4 +48,6 @@ dependencies {
 
     implementation 'com.karumi:dexter:6.0.2'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation project(path: ':map')
+    implementation project(path: ':bmi')
 }
