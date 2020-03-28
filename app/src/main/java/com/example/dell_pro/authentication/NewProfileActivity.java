@@ -58,6 +58,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
     private Uri mImageUri;
     private CircleImageView mImageview;
     private TextInputLayout username, phone_no, emerg_phone_no,user_desp;
+    private MaterialTextView verified;
     private MaterialTextView date_picker;
     private ProgressDialog dialog;
     private ProgressBar progress;
@@ -85,12 +86,21 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         spinner1 = findViewById(R.id.spinner_gender);
         spinner2 = findViewById(R.id.spinner_bldgrp);
         date_picker = findViewById(R.id.date_select);
+        verified=findViewById(R.id.verified_user);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         String uid = user.getUid();
         profiledataref = FirebaseStorage.getInstance().getReference("profilepics/").child(uid);
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid);
+
+        if(user.isEmailVerified()){
+            verified.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "User is Verified", Toast.LENGTH_SHORT).show();
+        } else{
+            verified.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, "User is not Verified", Toast.LENGTH_SHORT).show();
+        }
 
         field_data_setting();
         loaduserdata();
