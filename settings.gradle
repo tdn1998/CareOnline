@@ -1,2 +1,2 @@
-include ':app', ':map', ':bmi'
+include ':app', ':map', ':bmi', ':remind'
 rootProject.name='dell_pro'

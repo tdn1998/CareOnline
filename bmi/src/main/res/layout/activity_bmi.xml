@@ -42,14 +42,16 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/chip_male"
+                style="@style/CustomChipChoiceBMI"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_margin="20dp"
                 android:text="Male" />
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/chip_female"
+                style="@style/CustomChipChoiceBMI"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_margin="20dp"
@@ -194,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/your_bmi_value"
             android:layout_marginTop="10dp"
-            android:text="Here the status of Your BMI value will show"
+            android:text="Here the status of Your BMI value will show."
             android:textAlignment="center"
             android:textColor="@color/MEDIUMSEAGREEN"
             android:textSize="16sp"

@@ -24,18 +24,18 @@ import com.google.android.material.textview.MaterialTextView;
 public class BMIActivity extends AppCompatActivity {
 
     private Toolbar toolbar_bmi;
-    private ChipGroup chipGroup;
+    private Chip male,female;
     private AppCompatSeekBar height_seek, weight_seek;
     private MaterialTextView height_text, weight_text, your_bmi_value, bmi_status, bmi_table;
     private FloatingActionButton cal;
-    private int gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
 
-        chipGroup = findViewById(R.id.chip_group);
+        male=findViewById(R.id.chip_male);
+        female=findViewById(R.id.chip_female);
         height_seek = findViewById(R.id.height_seek);
         weight_seek = findViewById(R.id.weight_seek);
         height_text = findViewById(R.id.height_value);
@@ -54,22 +54,6 @@ public class BMIActivity extends AppCompatActivity {
     }
 
     private void buttons_clicked() {
-        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(ChipGroup chipGroup, int i) {
-                Chip chip = chipGroup.findViewById(i);
-                if (chip != null) {
-                    Toast.makeText(getApplicationContext(), "Gender " + chip.getText() + " Selected", Toast.LENGTH_SHORT).show();
-                }
-                if (chip.getText().equals("Male")) {
-                    gender = 1;
-                } else if (chip.getText().equals("Female")) {
-                    gender = 2;
-                } else {
-                    gender = 0;
-                }
-            }
-        });
 
         height_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -108,8 +92,12 @@ public class BMIActivity extends AppCompatActivity {
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (gender == 0) {
+                if (!male.isChecked()&&!female.isChecked()) {
                     Toast.makeText(BMIActivity.this, "Select Gender", Toast.LENGTH_SHORT).show();
+                    your_bmi_value.setText("00.00");
+                    your_bmi_value.setTextColor(getColor(R.color.violet));
+                    bmi_status.setText("Here the status of Your BMI value will show.");
+                    bmi_status.setTextColor(getColor(R.color.MEDIUMSEAGREEN));
                 } else {
                     float height_value = height_seek.getProgress();
                     float weight_value = weight_seek.getProgress();
