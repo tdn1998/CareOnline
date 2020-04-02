@@ -429,7 +429,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         get_user_data(profileimgref, name);
                     }
                 })
@@ -442,7 +442,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(NewProfileActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(NewProfileActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -464,7 +464,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         dialog.dismiss();
-                                        Toast.makeText(NewProfileActivity.this, "Profile Photo Updated", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(NewProfileActivity.this, MainActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);

@@ -4,10 +4,6 @@
 
     <application>
         <activity
-            android:name=".BMITableActivity"
-            android:parentActivityName=".BMIActivity"
-            android:theme="@style/BMITheme" />
-        <activity
             android:name=".BMIActivity"
             android:theme="@style/BMITheme" />
     </application>

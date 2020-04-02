@@ -110,11 +110,17 @@ public class BMIActivity extends AppCompatActivity {
         bmi_table.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BMIActivity.this, BMITableActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                opendialog();
+                //Intent intent = new Intent(BMIActivity.this, BMITableActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //startActivity(intent);
             }
         });
+    }
+
+    private void opendialog() {
+        BMIDialog bmidialog = new BMIDialog();
+        bmidialog.show(getSupportFragmentManager(),"example dialog");
     }
 
     private void show_status(float value) {
