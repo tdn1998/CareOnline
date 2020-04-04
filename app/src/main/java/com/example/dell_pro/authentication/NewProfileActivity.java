@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,7 +59,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri mImageUri;
     private CircleImageView mImageview;
-    private TextInputLayout username, phone_no, emerg_phone_no,user_desp;
+    private EditText username, phone_no, emerg_phone_no,user_desp;
     private MaterialTextView verified;
     private MaterialTextView date_picker;
     private ProgressDialog dialog;
@@ -90,6 +92,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        assert user != null;
         String uid = user.getUid();
         profiledataref = FirebaseStorage.getInstance().getReference("profilepics/").child(uid);
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid);
@@ -110,7 +113,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
     private void loaduserdata() {
         if (user != null) {
             if (user.getDisplayName() != null) {
-                Objects.requireNonNull(username.getEditText()).setText(user.getDisplayName());
+                Objects.requireNonNull(username).setText(user.getDisplayName());
             }
             if (user.getPhotoUrl() != null) {
                 progress.setVisibility(View.VISIBLE);
@@ -139,15 +142,16 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                     if (dataSnapshot.exists()) {
                         if (dataSnapshot.child("Phone Number").exists()) {
                             String phone = dataSnapshot.child("Phone Number").getValue(String.class);
-                            phone_no.getEditText().setText(phone);
+                            phone_no.setText(phone);
 
                         }
                         if (dataSnapshot.child("Emergency Phone Number").exists()) {
                             String phone = dataSnapshot.child("Emergency Phone Number").getValue(String.class);
-                            emerg_phone_no.getEditText().setText(phone);
+                            emerg_phone_no.setText(phone);
                         }
                         if (dataSnapshot.child("Gender").exists()) {
                             String gender = dataSnapshot.child("Gender").getValue(String.class);
+                            assert gender != null;
                             switch (gender) {
                                 case "Male":
                                     spinner1.setSelection(1);
@@ -165,6 +169,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                         }
                         if (dataSnapshot.child("Blood Group").exists()) {
                             String blood = dataSnapshot.child("Blood Group").getValue(String.class);
+                            assert blood != null;
                             switch (blood) {
                                 case "A+ve":
                                     spinner2.setSelection(1);
@@ -201,7 +206,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                         }
                         if (dataSnapshot.child("Description").exists()) {
                             String desp = dataSnapshot.child("Description").getValue(String.class);
-                            user_desp.getEditText().setText(desp);
+                            user_desp.setText(desp);
                         }
                     }
                 }
@@ -227,11 +232,11 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
             Toast.makeText(this, "Wait Server is Busy", Toast.LENGTH_SHORT).show();
         } else {
 
-            String user_name = Objects.requireNonNull(username.getEditText()).getText().toString().trim();
-            String phone = Objects.requireNonNull(phone_no.getEditText()).getText().toString().trim();
-            String emerg_phone = Objects.requireNonNull(emerg_phone_no.getEditText()).getText().toString().trim();
+            String user_name = Objects.requireNonNull(username).getText().toString().trim();
+            String phone = Objects.requireNonNull(phone_no).getText().toString().trim();
+            String emerg_phone = Objects.requireNonNull(emerg_phone_no).getText().toString().trim();
             String dob = date_picker.getText().toString().trim();
-            String desp = Objects.requireNonNull(user_desp.getEditText()).getText().toString().trim();
+            String desp = Objects.requireNonNull(user_desp).getText().toString().trim();
 
             //conditions of fields being checked
             if (user_name.isEmpty()) {
@@ -373,12 +378,9 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
-        date_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-            }
+        date_picker.setOnClickListener(v -> {
+            DialogFragment datePicker = new DatePickerFragment();
+            datePicker.show(getSupportFragmentManager(), "date picker");
         });
     }
 
@@ -419,6 +421,21 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         mDatabase.child("Date of Birth").setValue(date);
         mDatabase.child("Description").setValue(Desp);
         Toast.makeText(this, "Profile Data Updated", Toast.LENGTH_SHORT).show();
+
+        //set extras
+        int oxy_sat=generateRandom(95,100);
+        int pul_rate=generateRandom(60,100);
+        int temp=generateRandom(97,99);
+        mDatabase.child("pulse_oximeter").child("oxy_sat").setValue(oxy_sat);
+        mDatabase.child("pulse_oximeter").child("pul_rate").setValue(pul_rate);
+        mDatabase.child("temp").setValue(temp);
+    }
+
+    private int generateRandom(int a, int b) {
+        int ans;
+        Random rand = new Random();
+        ans = a + rand.nextInt(b - a + 1);
+        return ans;
     }
 
     private void profile_photo_update(final String name) {
@@ -426,53 +443,36 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 + "." + getFileExtension(mImageUri));
 
         task = profileimgref.putFile(mImageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                        get_user_data(profileimgref, name);
-                    }
+                .addOnSuccessListener(taskSnapshot -> {
+                    //Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                    get_user_data(profileimgref, name);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(NewProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                        //Toast.makeText(NewProfileActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> Toast.makeText(NewProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show())
+                .addOnProgressListener(taskSnapshot -> {
+                    //Toast.makeText(NewProfileActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
                 });
     }
 
     //get profile image url and display name after profile updated
     private void get_user_data(StorageReference ref, final String name) {
-        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                if (user != null && mImageUri != null) {
-                    UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(name)
-                            .setPhotoUri(uri)
-                            .build();
+        ref.getDownloadUrl().addOnSuccessListener(uri -> {
+            if (user != null && mImageUri != null) {
+                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(name)
+                        .setPhotoUri(uri)
+                        .build();
 
-                    user.updateProfile(profileUpdate)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        dialog.dismiss();
-                                        Toast.makeText(NewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(NewProfileActivity.this, MainActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
-                            });
-                }
+                user.updateProfile(profileUpdate)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                dialog.dismiss();
+                                Toast.makeText(NewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(NewProfileActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
             }
         });
     }

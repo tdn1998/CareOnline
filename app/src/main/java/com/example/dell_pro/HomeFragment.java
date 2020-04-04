@@ -28,7 +28,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeFragment extends Fragment {
 
-    final int[] imageArray = {R.drawable.blood_donation, R.drawable.clinics,
+    private final int[] imageArray = {R.drawable.blood_donation, R.drawable.clinics,
+            R.drawable.covid_banner,
+            R.drawable.corona,
             R.drawable.doctor_interaction};
 
     private static final String TAG = "MainActivity";
@@ -37,7 +39,7 @@ public class HomeFragment extends Fragment {
 
     private FirebaseUser user;
 
-    CardView test,chat,nearby,remainder,video,bmi_cal;
+    private CardView test,chat,nearby,remainder,video,bmi_cal;
 
     @Nullable
     @Override
@@ -76,73 +78,58 @@ public class HomeFragment extends Fragment {
 
         handler.postDelayed(runnable, 5000);
 
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getContext(), "Personal Checkup", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        test.setOnClickListener(v1 -> {
+            if (user.isEmailVerified()) {
+                //Intent intent = new Intent(getContext(), HealthActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "Personal Checkup", Toast.LENGTH_SHORT).show();
+                //startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
 
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getContext(), "Chat With Doctor", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        chat.setOnClickListener(v12 -> {
+            if (user.isEmailVerified()) {
+                //Intent intent = new Intent(getContext(), HealthActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "Chat With Doctor", Toast.LENGTH_SHORT).show();
+                //startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
 
-        remainder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    Intent intent = new Intent(getContext(), RemindActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getContext(), "Medicine Remainder", Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        remainder.setOnClickListener(v13 -> {
+            if (user.isEmailVerified()) {
+                Intent intent = new Intent(getContext(), RemindActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "Medicine Remainder", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
 
-        video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getContext(), "How to Use?", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        video.setOnClickListener(v14 -> {
+            if (user.isEmailVerified()) {
+                //Intent intent = new Intent(getContext(), HealthActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "How to Use?", Toast.LENGTH_SHORT).show();
+                //startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
 
-        bmi_cal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    Intent intent = new Intent(getContext(), BMIActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getContext(), "BMI Calculator", Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        bmi_cal.setOnClickListener(v15 -> {
+            if (user.isEmailVerified()) {
+                Intent intent = new Intent(getContext(), BMIActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "BMI Calculator", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -154,22 +141,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void init(){
-        nearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user.isEmailVerified()) {
-                    Intent intent = new Intent(getContext(), MapsActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    //Toast.makeText(getContext(), "Health Centres", Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
-                }
+        nearby.setOnClickListener(v -> {
+            if (user.isEmailVerified()) {
+                Intent intent = new Intent(getContext(), MapsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //Toast.makeText(getContext(), "Health Centres", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public boolean isServicesOK(){
+    private boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getContext());
