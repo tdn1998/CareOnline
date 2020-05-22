@@ -94,8 +94,8 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         user = mAuth.getCurrentUser();
         assert user != null;
         String uid = user.getUid();
-        profiledataref = FirebaseStorage.getInstance().getReference("profilepics/").child(uid);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(uid);
+        profiledataref = FirebaseStorage.getInstance().getReference("profilepics/").child("users/").child(uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
         if(user.isEmailVerified()){
             verified.setVisibility(View.VISIBLE);
