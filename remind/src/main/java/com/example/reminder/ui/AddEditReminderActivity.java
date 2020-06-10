@@ -35,7 +35,6 @@ public final class AddEditReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_remind);
 
-        //noinspection ConstantConditions
         Toolbar toolbar_add_edit=findViewById(R.id.toolbar_add_edit);
         toolbar_add_edit.setTitle(getToolbarTitle());
         setSupportActionBar(toolbar_add_edit);

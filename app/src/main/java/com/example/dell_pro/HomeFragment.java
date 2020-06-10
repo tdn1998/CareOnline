@@ -21,6 +21,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.bmicalculator.BMIActivity;
 import com.example.nearbymaps.MapsActivity;
 import com.example.reminder.ui.RemindActivity;
+import com.example.covid_chatbot.CoronaActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +40,7 @@ public class HomeFragment extends Fragment {
 
     private FirebaseUser user;
 
-    private CardView test,chat,nearby,remainder,video,bmi_cal;
+    private CardView test,chat,nearby,remainder,video,bmi_cal,reports,chat_bot;
 
     @Nullable
     @Override
@@ -47,13 +48,14 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         final ImageView imageView = v.findViewById(R.id.image_slide);
-
         test = v.findViewById(R.id.test);
         chat = v.findViewById(R.id.chat);
         nearby = v.findViewById(R.id.nearby);
         remainder = v.findViewById(R.id.remainder);
         video = v.findViewById(R.id.video);
         bmi_cal = v.findViewById(R.id.bmi_cal);
+        reports = v.findViewById(R.id.reports);
+        chat_bot = v.findViewById(R.id.chatbot);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -127,6 +129,31 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(), BMIActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Toast.makeText(getContext(), "BMI Calculator", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        reports.setOnClickListener(v16 -> {
+            if (user.isEmailVerified()) {
+                if (user.getDisplayName() != null) {
+                    Intent intent = new Intent(getContext(), ReportActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(getContext(), "View Reports", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "Complete your profile first!! Go to settings->See Profile", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        chat_bot.setOnClickListener(v15 -> {
+            if (user.isEmailVerified()) {
+                Intent intent = new Intent(getContext(), CoronaActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(getContext(), "COVID ChatBot", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             } else {
                 Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();

@@ -33,6 +33,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Main" />
+        <activity android:name=".ReportActivity"/>
         <activity android:name=".authentication.CreateAccountActivity" />
         <activity android:name=".authentication.LoginActivity" />
         <activity android:name=".authentication.NewProfileActivity" />

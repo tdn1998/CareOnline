@@ -351,8 +351,8 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 if (parent.getItemAtPosition(position).equals("Gender")) {
                     //do nothing
                 } else {
-                    String gender = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(NewProfileActivity.this, "Gender: " + gender + " Selected", Toast.LENGTH_SHORT).show();
+                    //String gender = parent.getItemAtPosition(position).toString();
+                    //Toast.makeText(NewProfileActivity.this, "Gender: " + gender + " Selected", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -368,8 +368,8 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 if (parent.getItemAtPosition(position).equals("Blood Group")) {
                     //do nothing
                 } else {
-                    String blood_grp = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(NewProfileActivity.this, "Blood Group: " + blood_grp + " Selected", Toast.LENGTH_SHORT).show();
+                    //String blood_grp = parent.getItemAtPosition(position).toString();
+                    //Toast.makeText(NewProfileActivity.this, "Blood Group: " + blood_grp + " Selected", Toast.LENGTH_SHORT).show();
                 }
             }
 

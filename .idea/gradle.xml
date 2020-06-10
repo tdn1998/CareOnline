@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bmi" />
+            <option value="$PROJECT_DIR$/chat_bot" />
             <option value="$PROJECT_DIR$/map" />
             <option value="$PROJECT_DIR$/remind" />
           </set>

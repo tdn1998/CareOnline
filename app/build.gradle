@@ -44,15 +44,16 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.google.firebase:firebase-storage:19.1.1'
-    implementation 'com.google.firebase:firebase-auth:19.3.0'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
-    implementation 'com.karumi:dexter:6.0.2'
+    implementation 'com.karumi:dexter:6.1.2'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation project(path: ':map')
     implementation project(path: ':bmi')
     implementation project(path: ':remind')
+    implementation project(path: ':chat_bot')
 }
