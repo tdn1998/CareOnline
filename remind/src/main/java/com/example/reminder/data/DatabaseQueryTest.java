@@ -22,21 +22,21 @@ public final class DatabaseQueryTest {
     private long id;
 
     @Before
-    public void insert() throws Exception {
+    public void insert() {
         id = DatabaseHelper.getInstance(context).addAlarm(new Reminder());
         Assert.assertTrue(id != -1);
     }
 
     @Test
-    public void getAlarms() throws Exception {
+    public void getAlarms() {
         final List<Reminder> reminders = DatabaseHelper.getInstance(context).getAlarms();
         Assert.assertTrue(reminders.size() > 0);
     }
 
     @After
-    public void delete() throws Exception {
+    public void delete() {
         final int rowsDeleted = DatabaseHelper.getInstance(context).deleteAlarm(id);
-        Assert.assertTrue(rowsDeleted == 1);
+        Assert.assertEquals(1, rowsDeleted);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.bmicalculator;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,13 +16,11 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textview.MaterialTextView;
 
 public class BMIActivity extends AppCompatActivity {
 
-    private Toolbar toolbar_bmi;
     private Chip male,female;
     private AppCompatSeekBar height_seek, weight_seek;
     private MaterialTextView height_text, weight_text, your_bmi_value, bmi_status, bmi_table;
@@ -45,7 +42,7 @@ public class BMIActivity extends AppCompatActivity {
         bmi_table = findViewById(R.id.bmi_table);
         cal = findViewById(R.id.cal);
 
-        toolbar_bmi = findViewById(R.id.toolbar_bmi);
+        Toolbar toolbar_bmi = findViewById(R.id.toolbar_bmi);
         setSupportActionBar(toolbar_bmi);
 
         height_text.setText(String.valueOf(height_seek.getProgress()));
@@ -158,7 +155,7 @@ public class BMIActivity extends AppCompatActivity {
     }
 
     private float bmi_cal(float height, float weight) {
-        float bmi = 0;
+        float bmi;
         bmi = weight / ((height / 100) * (height / 100));
         return bmi;
     }

@@ -43,13 +43,10 @@ public class SettingFragment extends Fragment {
 
     private MaterialTextView display_name, display_email;
     private CircleImageView view;
-    private ImageView verified;
     private FirebaseUser user;
     private ProgressBar progress;
 
-    private RecyclerView mRecyclerView;
     private SettingAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
     @Override
@@ -60,7 +57,7 @@ public class SettingFragment extends Fragment {
         display_email = v.findViewById(R.id.setting_email);
         progress=v.findViewById(R.id.setting_progress);
         view = v.findViewById(R.id.setting_image);
-        verified = v.findViewById(R.id.verification);
+        ImageView verified = v.findViewById(R.id.verification);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -79,9 +76,9 @@ public class SettingFragment extends Fragment {
         settingList.add(new SettingItem(R.drawable.delete, "Delete Account", "Delete User Account and All its Data"));
         settingList.add(new SettingItem(R.drawable.signout_icon, "Sign Out", "User Sign out and Close all"));
 
-        mRecyclerView = v.findViewById(R.id.recycle_settings);
+        RecyclerView mRecyclerView = v.findViewById(R.id.recycle_settings);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new SettingAdapter(settingList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -155,7 +152,7 @@ public class SettingFragment extends Fragment {
         assert user != null;
         String uid = user.getUid();
 
-        DatabaseReference mDatabase;
+        final DatabaseReference mDatabase;
         StorageReference profiledataref;
 
         profiledataref = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());
@@ -208,7 +205,7 @@ public class SettingFragment extends Fragment {
         Intent intent1 = new Intent(getContext(), LoginActivity.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent1);
-        getActivity().finish();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
     private void email_verify() {
@@ -224,7 +221,7 @@ public class SettingFragment extends Fragment {
                                 Intent intent = new Intent(getContext(), LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                getActivity().finish();
+                                Objects.requireNonNull(getActivity()).finish();
                                 Toast.makeText(getContext(), "Verification Email Sent", Toast.LENGTH_SHORT).show();
                             }
                         }

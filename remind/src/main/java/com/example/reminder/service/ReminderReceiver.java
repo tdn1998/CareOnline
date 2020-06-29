@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -28,8 +29,6 @@ import java.util.Objects;
 
 import static android.app.NotificationManager.IMPORTANCE_HIGH;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.O;
 import static com.example.reminder.ui.ReminderLandingPageActivity.launchIntent;
 
 public final class ReminderReceiver extends BroadcastReceiver {
@@ -184,19 +183,20 @@ public final class ReminderReceiver extends BroadcastReceiver {
     }
 
     private static void createNotificationChannel(Context ctx) {
-        if(SDK_INT < O) return;
 
         final NotificationManager mgr = ctx.getSystemService(NotificationManager.class);
         if(mgr == null) return;
 
         final String name = ctx.getString(R.string.channel_name);
-        if(mgr.getNotificationChannel(name) == null) {
-            final NotificationChannel channel =
-                    new NotificationChannel(CHANNEL_ID, name, IMPORTANCE_HIGH);
-            channel.enableVibration(true);
-            channel.setVibrationPattern(new long[] {1000,500,1000,500,1000,500});
-            channel.setBypassDnd(true);
-            mgr.createNotificationChannel(channel);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(mgr.getNotificationChannel(name) == null) {
+                final NotificationChannel channel =
+                        new NotificationChannel(CHANNEL_ID, name, IMPORTANCE_HIGH);
+                channel.enableVibration(true);
+                channel.setVibrationPattern(new long[] {1000,500,1000,500,1000,500});
+                channel.setBypassDnd(true);
+                mgr.createNotificationChannel(channel);
+            }
         }
     }
 

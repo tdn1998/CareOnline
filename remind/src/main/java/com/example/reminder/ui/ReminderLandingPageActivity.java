@@ -29,9 +29,9 @@ public final class ReminderLandingPageActivity extends AppCompatActivity impleme
     private int count;
 
     static final int SHAKE_THRESHOLD = 100;
-    public static int DATA_X = SensorManager.DATA_X;
-    public static int DATA_Y = SensorManager.DATA_Y;
-    public static int DATA_Z = SensorManager.DATA_Z;
+    public static final int DATA_X = SensorManager.DATA_X;
+    public static final int DATA_Y = SensorManager.DATA_Y;
+    public static final int DATA_Z = SensorManager.DATA_Z;
     public SensorManager sensorManager;
     public Sensor accelerormeterSensor;
     private PowerManager pm;

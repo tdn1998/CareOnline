@@ -1,6 +1,9 @@
 package com.example.dell_pro;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ReportActivity extends AppCompatActivity {
     private TextView temperature, oxysat, pulserate, Tdate, currTime, bGroup, mobno, gender, dob, pname;
     private FirebaseUser currUser;
-    private FirebaseAuth userAuth;
     DatabaseReference reference;
 
     @Override
@@ -40,12 +43,13 @@ public class ReportActivity extends AppCompatActivity {
         dob = findViewById(R.id.dob);
         pname = findViewById(R.id.pname);
 
-        userAuth = FirebaseAuth.getInstance();
+        FirebaseAuth userAuth = FirebaseAuth.getInstance();
         currUser = userAuth.getCurrentUser();
+        assert currUser != null;
         String uid = currUser.getUid();
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        final String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        final String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
 
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
@@ -54,20 +58,29 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pname.setText(currUser.getDisplayName());
-                bGroup.setText(dataSnapshot.child("Blood Group").getValue().toString());
-                oxysat.setText(dataSnapshot.child("pulse_oximeter").child("oxy_sat").getValue().toString() + " %");
-                pulserate.setText(dataSnapshot.child("pulse_oximeter").child("pul_rate").getValue().toString() + " Bpm");
-                temperature.setText(dataSnapshot.child("temp").getValue().toString() + " *F");
-                mobno.setText(dataSnapshot.child("Phone Number").getValue().toString());
-                gender.setText(dataSnapshot.child("Gender").getValue().toString());
-                Tdate.setText(currentDate.toString());
-                currTime.setText(currentTime.toString());
-                dob.setText(dataSnapshot.child("Date of Birth").getValue().toString());
+                bGroup.setText(Objects.requireNonNull(dataSnapshot.child("Blood Group").getValue()).toString());
+                oxysat.setText(Objects.requireNonNull(dataSnapshot.child("pulse_oximeter").child("oxy_sat").getValue()).toString() + " %");
+                pulserate.setText(Objects.requireNonNull(dataSnapshot.child("pulse_oximeter").child("pul_rate").getValue()).toString() + " Bpm");
+                temperature.setText(Objects.requireNonNull(dataSnapshot.child("temp").getValue()).toString() + " *F");
+                mobno.setText(Objects.requireNonNull(dataSnapshot.child("Phone Number").getValue()).toString());
+                gender.setText(Objects.requireNonNull(dataSnapshot.child("Gender").getValue()).toString());
+                Tdate.setText(currentDate);
+                currTime.setText(currentTime);
+                dob.setText(Objects.requireNonNull(dataSnapshot.child("Date of Birth").getValue()).toString());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        Button ecgbutton = findViewById(R.id.ecgbutton);
+
+        ecgbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReportActivity.this, EcgGraph.class));
             }
         });
 

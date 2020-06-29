@@ -23,27 +23,18 @@ public final class ViewUtils {
         final int minutes = c.get(Calendar.MINUTE);
         final int hours = c.get(Calendar.HOUR_OF_DAY);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            picker.setMinute(minutes);
-            picker.setHour(hours);
-        } else {
-            picker.setCurrentMinute(minutes);
-            picker.setCurrentHour(hours);
-        }
+        picker.setMinute(minutes);
+        picker.setHour(hours);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     public static int getTimePickerMinute(TimePicker picker) {
-        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                ? picker.getMinute()
-                : picker.getCurrentMinute();
+        return picker.getMinute();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     public static int getTimePickerHour(TimePicker picker) {
-        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                ? picker.getHour()
-                : picker.getCurrentHour();
+        return picker.getHour();
     }
 
 }

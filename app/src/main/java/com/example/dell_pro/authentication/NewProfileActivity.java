@@ -30,7 +30,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,7 +49,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.Objects;
-import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -60,7 +58,6 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
     private Uri mImageUri;
     private CircleImageView mImageview;
     private EditText username, phone_no, emerg_phone_no,user_desp;
-    private MaterialTextView verified;
     private MaterialTextView date_picker;
     private ProgressDialog dialog;
     private ProgressBar progress;
@@ -69,7 +66,6 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
     private StorageTask task;
     private DatabaseReference mDatabase;
     private FirebaseUser user;
-    private FirebaseAuth mAuth;
 
     //extra data
     AppCompatSpinner spinner1, spinner2;
@@ -88,9 +84,9 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         spinner1 = findViewById(R.id.spinner_gender);
         spinner2 = findViewById(R.id.spinner_bldgrp);
         date_picker = findViewById(R.id.date_select);
-        verified=findViewById(R.id.verified_user);
+        MaterialTextView verified = findViewById(R.id.verified_user);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         assert user != null;
         String uid = user.getUid();
@@ -378,9 +374,12 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
-        date_picker.setOnClickListener(v -> {
-            DialogFragment datePicker = new DatePickerFragment();
-            datePicker.show(getSupportFragmentManager(), "date picker");
+        date_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
         });
     }
 
@@ -423,56 +422,75 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         Toast.makeText(this, "Profile Data Updated", Toast.LENGTH_SHORT).show();
 
         //set extras
-        int oxy_sat=generateRandom(95,100);
+   /*     int oxy_sat=generateRandom(95,100);
         int pul_rate=generateRandom(60,100);
         int temp=generateRandom(97,99);
         mDatabase.child("pulse_oximeter").child("oxy_sat").setValue(oxy_sat);
         mDatabase.child("pulse_oximeter").child("pul_rate").setValue(pul_rate);
         mDatabase.child("temp").setValue(temp);
+*/
+
     }
 
-    private int generateRandom(int a, int b) {
+   /* private int generateRandom(int a, int b) {
         int ans;
         Random rand = new Random();
         ans = a + rand.nextInt(b - a + 1);
         return ans;
-    }
+    }*/
 
     private void profile_photo_update(final String name) {
         final StorageReference profileimgref = profiledataref.child(System.currentTimeMillis()
                 + "." + getFileExtension(mImageUri));
 
         task = profileimgref.putFile(mImageUri)
-                .addOnSuccessListener(taskSnapshot -> {
-                    //Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                    get_user_data(profileimgref, name);
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        //Toast.makeText(NewProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        get_user_data(profileimgref, name);
+                    }
                 })
-                .addOnFailureListener(e -> Toast.makeText(NewProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show())
-                .addOnProgressListener(taskSnapshot -> {
-                    //Toast.makeText(NewProfileActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                    }
                 });
     }
 
     //get profile image url and display name after profile updated
     private void get_user_data(StorageReference ref, final String name) {
-        ref.getDownloadUrl().addOnSuccessListener(uri -> {
-            if (user != null && mImageUri != null) {
-                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(name)
-                        .setPhotoUri(uri)
-                        .build();
+        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                if (user != null && mImageUri != null) {
+                    UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .setPhotoUri(uri)
+                            .build();
 
-                user.updateProfile(profileUpdate)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                dialog.dismiss();
-                                Toast.makeText(NewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(NewProfileActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-                            }
-                        });
+                    user.updateProfile(profileUpdate)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        dialog.dismiss();
+                                        Toast.makeText(NewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(NewProfileActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            });
+                }
             }
         });
     }

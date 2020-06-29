@@ -60,7 +60,7 @@ public final class Reminder implements Parcelable{
     private final long id;
     private long time;
     private String label;
-    private SparseBooleanArray allDays;
+    private final SparseBooleanArray allDays;
     private boolean isEnabled;
 
     public Reminder() {

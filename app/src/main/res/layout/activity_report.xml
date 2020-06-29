@@ -38,7 +38,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/medrep"
                 android:layout_marginTop="4dp"
                 android:text="Date:"
                 android:textColor="@color/white"
@@ -48,7 +47,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/medrep"
                 android:layout_marginTop="4dp"
                 android:text="Time:"
                 android:textColor="@color/white"
@@ -134,7 +132,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="50dp">
+            android:paddingStart="50dp"
+            android:paddingEnd="10dp">
 
             <TextView
                 android:id="@+id/Tdate"

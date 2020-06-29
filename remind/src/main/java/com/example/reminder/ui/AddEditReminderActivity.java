@@ -17,6 +17,7 @@ import com.example.reminder.service.LoadReminderService;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
 public final class AddEditReminderActivity extends AppCompatActivity {
 
@@ -38,7 +39,7 @@ public final class AddEditReminderActivity extends AppCompatActivity {
         Toolbar toolbar_add_edit=findViewById(R.id.toolbar_add_edit);
         toolbar_add_edit.setTitle(getToolbarTitle());
         setSupportActionBar(toolbar_add_edit);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         final Reminder reminder = getAlarm();
 

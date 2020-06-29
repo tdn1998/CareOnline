@@ -42,6 +42,7 @@ import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CoronaActivity extends AppCompatActivity {
 
@@ -49,11 +50,10 @@ public class CoronaActivity extends AppCompatActivity {
     private ChatAdapter mAdapter;
     private ArrayList messageArrayList;
     private EditText inputMessage;
-    private ImageButton btnSend;
     private ImageButton btnRecord;
     StreamPlayer streamPlayer = new StreamPlayer();
     private boolean initialRequest;
-    private static String TAG = "CoronaActivity";
+    private static final String TAG = "CoronaActivity";
     private boolean listening = false;
     private MicrophoneInputStream capture;
     private Context mContext;
@@ -62,13 +62,12 @@ public class CoronaActivity extends AppCompatActivity {
     private Assistant watsonAssistant;
     private Response<SessionResponse> watsonAssistantSession;
     private SpeechToText speechService;
-    private TextToSpeech textToSpeech;
 
     private void createServices() {
         watsonAssistant = new Assistant("2019-02-28", new IamAuthenticator(mContext.getString(R.string.assistant_apikey)));
         watsonAssistant.setServiceUrl(mContext.getString(R.string.assistant_url));
 
-        textToSpeech = new TextToSpeech(new IamAuthenticator((mContext.getString(R.string.TTS_apikey))));
+        TextToSpeech textToSpeech = new TextToSpeech(new IamAuthenticator((mContext.getString(R.string.TTS_apikey))));
         textToSpeech.setServiceUrl(mContext.getString(R.string.TTS_url));
 
         speechService = new SpeechToText(new IamAuthenticator(mContext.getString(R.string.STT_apikey)));
@@ -83,7 +82,7 @@ public class CoronaActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         inputMessage = findViewById(R.id.message);
-        btnSend = findViewById(R.id.btn_send);
+        ImageButton btnSend = findViewById(R.id.btn_send);
         btnRecord = findViewById(R.id.btn_record);
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -191,9 +190,7 @@ public class CoronaActivity extends AppCompatActivity {
                             .build();
                     Response<MessageResponse> response = watsonAssistant.message(options).execute();
                     Log.i(TAG, "run: " + response.getResult());
-                    if (response != null &&
-                            response.getResult().getOutput() != null &&
-                            !response.getResult().getOutput().getGeneric().isEmpty()) {
+                    if (response.getResult().getOutput() != null && !response.getResult().getOutput().getGeneric().isEmpty()) {
 
                         List<RuntimeResponseGeneric> responses = response.getResult().getOutput().getGeneric();
 
@@ -214,10 +211,10 @@ public class CoronaActivity extends AppCompatActivity {
                                 case "option":
                                     outMessage = new Message();
                                     String title = r.title();
-                                    String OptionsOutput = "";
+                                    StringBuilder OptionsOutput = new StringBuilder();
                                     for (int i = 0; i < r.options().size(); i++) {
                                         DialogNodeOutputOptionsElement option = r.options().get(i);
-                                        OptionsOutput = OptionsOutput + option.getLabel() + "\n";
+                                        OptionsOutput.append(option.getLabel()).append("\n");
 
                                     }
                                     outMessage.setMessage(title + "\n" + OptionsOutput);
@@ -245,7 +242,7 @@ public class CoronaActivity extends AppCompatActivity {
                             public void run() {
                                 mAdapter.notifyDataSetChanged();
                                 if (mAdapter.getItemCount() > 1) {
-                                    recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, mAdapter.getItemCount() - 1);
+                                    Objects.requireNonNull(recyclerView.getLayoutManager()).smoothScrollToPosition(recyclerView, null, mAdapter.getItemCount() - 1);
 
                                 }
 

@@ -49,7 +49,6 @@
         android:layout_alignParentBottom="true"
         app:rippleColor="@color/white"
         app:srcCompat="@drawable/plus"
-        app:tint="@color/white"
-        android:layout_alignParentRight="true" />
+        app:tint="@color/white" />
 
 </RelativeLayout>

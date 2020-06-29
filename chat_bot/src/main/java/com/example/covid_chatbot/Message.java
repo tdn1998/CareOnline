@@ -1,16 +1,12 @@
 package com.example.covid_chatbot;
 
-/**
- * Created by Vidyasagar Machupalli on 17/11/16.
- */
-
 import com.ibm.watson.assistant.v2.model.RuntimeResponseGeneric;
 
 import java.io.Serializable;
 
 public class Message implements Serializable {
     String id, message, url, title, description;
-    Type type;
+    final Type type;
     public Message() {
         this.type = Type.TEXT;
     }

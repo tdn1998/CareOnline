@@ -33,7 +33,6 @@ import java.util.Objects;
 public class AddEditReminderFragment extends Fragment {
 
     private EditText mLabel;
-    private ChipGroup grp;
     private Chip Mon, Tue, Wed, Thurs, Fri, Sat, Sun;
     private FloatingActionButton fab_save,fab_delete;
     private TimePicker mTimePicker;
@@ -61,7 +60,7 @@ public class AddEditReminderFragment extends Fragment {
         Sat = v.findViewById(R.id.sat);
         Sun = v.findViewById(R.id.sun);
 
-        grp = v.findViewById(R.id.chipGroup);
+        ChipGroup grp = v.findViewById(R.id.chipGroup);
         fab_save=v.findViewById(R.id.save);
         fab_delete=v.findViewById(R.id.delete);
 
@@ -190,7 +189,7 @@ public class AddEditReminderFragment extends Fragment {
         Objects.requireNonNull(getActivity()).finish();
     }
 
-    private void delete(Reminder reminder) {
+    private void delete(final Reminder reminder) {
 
         final AlertDialog.Builder builder =
                 new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.DeleteAlarmDialogTheme);
@@ -209,7 +208,7 @@ public class AddEditReminderFragment extends Fragment {
                     messageId = R.string.delete_complete;
                     Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
                     LoadReminderService.launchLoadAlarmsService(getContext());
-                    getActivity().finish();
+                    Objects.requireNonNull(getActivity()).finish();
                 } else {
                     messageId = R.string.delete_failed;
                     Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();

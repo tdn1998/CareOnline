@@ -1,9 +1,5 @@
 package com.example.covid_chatbot;
 
-/**
- * Created by VMac on 17/11/16.
- */
-
 import android.app.Activity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,8 +17,8 @@ import java.util.ArrayList;
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     protected Activity activity;
-    private int SELF = 100;
-    private ArrayList<Message> messageArrayList;
+    private final int SELF = 100;
+    private final ArrayList<Message> messageArrayList;
 
 
     public ChatAdapter(ArrayList<Message> messageArrayList) {
@@ -82,14 +78,14 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return messageArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView message;
-        ImageView image;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        final TextView message;
+        final ImageView image;
 
         public ViewHolder(View view) {
             super(view);
-            message = (TextView) itemView.findViewById(R.id.message);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            message = itemView.findViewById(R.id.message);
+            image = itemView.findViewById(R.id.image);
         }
     }
 

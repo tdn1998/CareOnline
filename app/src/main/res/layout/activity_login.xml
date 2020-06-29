@@ -94,6 +94,7 @@
             android:onClick="login_clicked"
             android:padding="10dp"
             android:paddingStart="20dp"
+            android:paddingEnd="10dp"
             android:text="Sign in"
             android:textAllCaps="false"
             android:textSize="20sp"

@@ -20,23 +20,23 @@ public final class DatabaseWriteTest {
     private long id;
 
     @Before
-    public void insert() throws Exception {
+    public void insert() {
         id = DatabaseHelper.getInstance(context).addAlarm(new Reminder());
         Assert.assertTrue(id != -1);
     }
 
     @Test
-    public void update() throws Exception {
+    public void update() {
         final Reminder reminder = new Reminder(id);
         reminder.setIsEnabled(false);
         final int rowsUpdated = DatabaseHelper.getInstance(context).updateAlarm(reminder);
-        Assert.assertTrue(rowsUpdated == 1);
+        Assert.assertEquals(1, rowsUpdated);
     }
 
     @After
-    public void delete() throws Exception {
+    public void delete() {
         final int rowsDeleted = DatabaseHelper.getInstance(context).deleteAlarm(id);
-        Assert.assertTrue(rowsDeleted == 1);
+        Assert.assertEquals(1, rowsDeleted);
     }
 
 }

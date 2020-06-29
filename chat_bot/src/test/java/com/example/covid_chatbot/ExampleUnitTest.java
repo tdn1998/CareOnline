@@ -1,8 +1,8 @@
-package com.example.reminder;
+package com.example.covid_chatbot;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ExampleUnitTest {
     @Test

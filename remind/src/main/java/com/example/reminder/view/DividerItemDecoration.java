@@ -14,7 +14,7 @@ import com.example.reminder.util.ViewUtils;
 public final class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private static final int DIVIDER_HEIGHT = (int) ViewUtils.dpToPx(1);
-    private Drawable mDivider;
+    private final Drawable mDivider;
 
     public DividerItemDecoration(Context context) {
         this(context, null);

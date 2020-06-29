@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.os.Build;
+
 import androidx.core.app.ActivityCompat;
 import android.util.SparseBooleanArray;
 
@@ -43,10 +43,6 @@ public final class ReminderUtils {
     private ReminderUtils() { throw new AssertionError(); }
 
     public static void checkAlarmPermissions(Activity activity) {
-
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return;
-        }
 
         final int permission = ActivityCompat.checkSelfPermission(
                 activity, Manifest.permission.VIBRATE
