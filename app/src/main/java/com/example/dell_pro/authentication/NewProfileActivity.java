@@ -444,6 +444,24 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         final StorageReference profileimgref = profiledataref.child(System.currentTimeMillis()
                 + "." + getFileExtension(mImageUri));
 
+        if(user.getPhotoUrl()==null){
+            //do nothing
+        } else {
+            final StorageReference del_prev_pic = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());;
+
+            del_prev_pic.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(NewProfileActivity.this, "Previous Pic Deleted", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(NewProfileActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
         task = profileimgref.putFile(mImageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override

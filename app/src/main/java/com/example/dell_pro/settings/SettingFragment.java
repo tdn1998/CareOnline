@@ -153,28 +153,32 @@ public class SettingFragment extends Fragment {
         String uid = user.getUid();
 
         final DatabaseReference mDatabase;
-        StorageReference profiledataref;
 
-        profiledataref = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
-        profiledataref.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+        //there is no way to delete the profile pic folder
+        if(user.getPhotoUrl()==null){
+            //do nothing
+        } else{
+            StorageReference profiledataref = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());
+            profiledataref.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Profile Data Storage Deleted", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        mDatabase.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "Profile Data Storage Deleted", Toast.LENGTH_SHORT).show();
-
-                    mDatabase.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Profile Data Deleted", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
+                    Toast.makeText(getContext(), "Profile Data Deleted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
                 }
