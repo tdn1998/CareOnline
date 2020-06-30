@@ -419,6 +419,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         mDatabase.child("Emergency Phone Number").setValue(emerg_phone);
         mDatabase.child("Date of Birth").setValue(date);
         mDatabase.child("Description").setValue(Desp);
+        mDatabase.child("Id").setValue(user.getUid());
         Toast.makeText(this, "Profile Data Updated", Toast.LENGTH_SHORT).show();
 
         //set extras
@@ -475,6 +476,10 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                             .setDisplayName(name)
                             .setPhotoUri(uri)
                             .build();
+
+                    mDatabase.child("Username").setValue(name);
+                    mDatabase.child("ImgUrl").setValue(uri.toString());
+                    //Toast.makeText(NewProfileActivity.this, uri.toString(), Toast.LENGTH_SHORT).show();
 
                     user.updateProfile(profileUpdate)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
