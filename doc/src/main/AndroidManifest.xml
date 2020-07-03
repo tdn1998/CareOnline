@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dell_doc">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".authentication.DocNewProfileActivity" />
+
+        <activity android:name=".authentication.DocCreateAccountActivity" />
+
+        <activity android:name=".DocMainActivity" />
+
+        <activity android:name=".authentication.DocLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".UserProfile"
+            android:parentActivityName=".DocMainActivity" />
+
+        <activity
+            android:name=".Chatting"
+            android:parentActivityName=".DocMainActivity" />
+
+    </application>
+
+</manifest>

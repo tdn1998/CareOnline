@@ -58,15 +58,15 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pname.setText(currUser.getDisplayName());
-                bGroup.setText(Objects.requireNonNull(dataSnapshot.child("Blood Group").getValue()).toString());
+                bGroup.setText(Objects.requireNonNull(dataSnapshot.child("bloodgrp").getValue()).toString());
                 oxysat.setText(Objects.requireNonNull(dataSnapshot.child("pulse_oximeter").child("oxy_sat").getValue()).toString() + " %");
                 pulserate.setText(Objects.requireNonNull(dataSnapshot.child("pulse_oximeter").child("pul_rate").getValue()).toString() + " Bpm");
                 temperature.setText(Objects.requireNonNull(dataSnapshot.child("temp").getValue()).toString() + " *F");
-                mobno.setText(Objects.requireNonNull(dataSnapshot.child("Phone Number").getValue()).toString());
-                gender.setText(Objects.requireNonNull(dataSnapshot.child("Gender").getValue()).toString());
+                mobno.setText(Objects.requireNonNull(dataSnapshot.child("phno").getValue()).toString());
+                gender.setText(Objects.requireNonNull(dataSnapshot.child("gender").getValue()).toString());
                 Tdate.setText(currentDate);
                 currTime.setText(currentTime);
-                dob.setText(Objects.requireNonNull(dataSnapshot.child("Date of Birth").getValue()).toString());
+                dob.setText(Objects.requireNonNull(dataSnapshot.child("dob").getValue()).toString());
             }
 
             @Override

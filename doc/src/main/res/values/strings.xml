@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Doc</string>
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="blood_grp">
+        <item>Blood Group</item>
+        <item>A+ve</item>
+        <item>A-ve</item>
+        <item>B+ve</item>
+        <item>B-ve</item>
+        <item>O+ve</item>
+        <item>O-ve</item>
+        <item>AB+ve</item>
+        <item>AB-ve</item>
+    </string-array>
+
+    <string-array name="doc_status">
+        <item>Status</item>
+        <item>Active</item>
+        <item>Inactive</item>
+    </string-array>
+
+    <string name="msg">Enter Message</string>
+
+</resources>

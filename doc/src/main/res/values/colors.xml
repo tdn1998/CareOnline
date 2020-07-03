@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="indianred">#cd5c5c</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="grey">#778899</color>
+
+    <color name="MEDIUMSEAGREEN">#3CB371</color>
+</resources>

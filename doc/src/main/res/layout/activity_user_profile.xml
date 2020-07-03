@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/indianred"
+    android:orientation="vertical"
+    tools:context=".UserProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/indianred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ImageView
+        android:id="@+id/user_profile_image"
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/doctor_interaction" />
+
+    <TextView
+        android:id="@+id/user_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Display Name"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_profile_name"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:text="Phone No: "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/user_blood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_phone"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Blood Group: "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/user_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_blood"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="DOB: "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/user_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_dob"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Gender: "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/user_desp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_gender"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Descriptions: "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <!--<Button
+        android:id="@+id/button_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:backgroundTint="@color/white"
+        android:text="Accept Appointment Request"
+        android:textColor="@color/indianred" />-->
+
+</RelativeLayout>

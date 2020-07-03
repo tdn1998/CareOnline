@@ -136,17 +136,17 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        if (dataSnapshot.child("Phone Number").exists()) {
-                            String phone = dataSnapshot.child("Phone Number").getValue(String.class);
+                        if (dataSnapshot.child("phno").exists()) {
+                            String phone = dataSnapshot.child("phno").getValue(String.class);
                             phone_no.setText(phone);
 
                         }
-                        if (dataSnapshot.child("Emergency Phone Number").exists()) {
-                            String phone = dataSnapshot.child("Emergency Phone Number").getValue(String.class);
+                        if (dataSnapshot.child("emerphno").exists()) {
+                            String phone = dataSnapshot.child("emerphno").getValue(String.class);
                             emerg_phone_no.setText(phone);
                         }
-                        if (dataSnapshot.child("Gender").exists()) {
-                            String gender = dataSnapshot.child("Gender").getValue(String.class);
+                        if (dataSnapshot.child("gender").exists()) {
+                            String gender = dataSnapshot.child("gender").getValue(String.class);
                             assert gender != null;
                             switch (gender) {
                                 case "Male":
@@ -163,8 +163,8 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                                     break;
                             }
                         }
-                        if (dataSnapshot.child("Blood Group").exists()) {
-                            String blood = dataSnapshot.child("Blood Group").getValue(String.class);
+                        if (dataSnapshot.child("bloodgrp").exists()) {
+                            String blood = dataSnapshot.child("bloodgrp").getValue(String.class);
                             assert blood != null;
                             switch (blood) {
                                 case "A+ve":
@@ -196,12 +196,12 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                                     break;
                             }
                         }
-                        if (dataSnapshot.child("Date of Birth").exists()) {
-                            String date = dataSnapshot.child("Date of Birth").getValue(String.class);
+                        if (dataSnapshot.child("dob").exists()) {
+                            String date = dataSnapshot.child("dob").getValue(String.class);
                             date_picker.setText(date);
                         }
-                        if (dataSnapshot.child("Description").exists()) {
-                            String desp = dataSnapshot.child("Description").getValue(String.class);
+                        if (dataSnapshot.child("desp").exists()) {
+                            String desp = dataSnapshot.child("desp").getValue(String.class);
                             user_desp.setText(desp);
                         }
                     }
@@ -413,13 +413,13 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
 
     //updating profile fields
     private void profile_data_update(String gender, String phone, String blood_group, String emerg_phone, String date, String Desp) {
-        mDatabase.child("Gender").setValue(gender);
-        mDatabase.child("Phone Number").setValue(phone);
-        mDatabase.child("Blood Group").setValue(blood_group);
-        mDatabase.child("Emergency Phone Number").setValue(emerg_phone);
-        mDatabase.child("Date of Birth").setValue(date);
-        mDatabase.child("Description").setValue(Desp);
-        mDatabase.child("Id").setValue(user.getUid());
+        mDatabase.child("gender").setValue(gender);
+        mDatabase.child("phno").setValue(phone);
+        mDatabase.child("bloodgrp").setValue(blood_group);
+        mDatabase.child("emerphno").setValue(emerg_phone);
+        mDatabase.child("dob").setValue(date);
+        mDatabase.child("desp").setValue(Desp);
+        mDatabase.child("id").setValue(user.getUid());
         Toast.makeText(this, "Profile Data Updated", Toast.LENGTH_SHORT).show();
 
         //set extras
@@ -447,7 +447,7 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
         if(user.getPhotoUrl()==null){
             //do nothing
         } else {
-            final StorageReference del_prev_pic = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());;
+            final StorageReference del_prev_pic = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());
 
             del_prev_pic.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -495,8 +495,8 @@ public class NewProfileActivity extends AppCompatActivity implements DatePickerD
                             .setPhotoUri(uri)
                             .build();
 
-                    mDatabase.child("Username").setValue(name);
-                    mDatabase.child("ImgUrl").setValue(uri.toString());
+                    mDatabase.child("username").setValue(name);
+                    mDatabase.child("imgurl").setValue(uri.toString());
                     //Toast.makeText(NewProfileActivity.this, uri.toString(), Toast.LENGTH_SHORT).show();
 
                     user.updateProfile(profileUpdate)

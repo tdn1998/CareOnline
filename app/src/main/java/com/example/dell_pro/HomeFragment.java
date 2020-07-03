@@ -22,6 +22,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.bmicalculator.BMIActivity;
 import com.example.covid_chatbot.CoronaActivity;
+import com.example.dell_pro.chattingUI.ChatActivity;
 import com.example.nearbymaps.MapsActivity;
 import com.example.reminder.ui.RemindActivity;
 import com.google.android.gms.common.ConnectionResult;
@@ -135,10 +136,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     Toast.makeText(getContext(), "Chat With Doctor", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
                 }
