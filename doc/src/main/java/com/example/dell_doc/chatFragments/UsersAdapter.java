@@ -34,11 +34,21 @@ public class UsersAdapter extends FirebaseRecyclerAdapter<Users, UsersAdapter.Us
 
     @Override
     protected void onBindViewHolder(@NonNull UsersAdapter.UsersViewHolder holder, int position, @NonNull final Users model) {
-        holder.user_name.setText(model.getUsername());
-        holder.user_phone.setText(model.getPhno());
 
-        if (model.getImgurl().equals("default")) {
-            holder.user_image.setImageResource(R.mipmap.ic_launcher);
+        if(model.getUsername()==null){
+            holder.user_name.setText("Display Name");
+        } else{
+            holder.user_name.setText(model.getUsername());
+        }
+
+        if(model.getPhno()==null){
+            holder.user_phone.setText("No Phone Number");
+        }else{
+            holder.user_phone.setText(model.getPhno());
+        }
+
+        if (model.getImgurl()==null) {
+            holder.user_image.setImageResource(R.drawable.blankprofile_round);
         } else {
             Glide.with(context).load(model.getImgurl()).into(holder.user_image);
         }

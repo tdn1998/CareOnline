@@ -37,7 +37,8 @@
             android:parentActivityName=".chattingUI.ChatActivity"/>
 
         <activity
-            android:name=".chattingUI.ChatActivity" />
+            android:name=".chattingUI.ChatActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".MainActivity"

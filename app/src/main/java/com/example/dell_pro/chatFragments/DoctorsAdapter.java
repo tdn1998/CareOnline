@@ -33,11 +33,21 @@ public class DoctorsAdapter extends FirebaseRecyclerAdapter<Doctors, DoctorsAdap
 
     @Override
     protected void onBindViewHolder(@NonNull DoctorsViewHolder holder, int position, @NonNull final Doctors model) {
-        holder.doc_name.setText(model.getDocname());
-        holder.status.setText(model.getStatus());
 
-        if (model.getImgurl().equals("default")) {
-            holder.doc_image.setImageResource(R.mipmap.ic_launcher);
+        if(model.getDocname()==null){
+            holder.doc_name.setText("Display Name");
+        }else{
+            holder.doc_name.setText(model.getDocname());
+        }
+
+        if(model.getStatus()==null){
+            holder.status.setText("None");
+        }else{
+            holder.status.setText(model.getStatus());
+        }
+
+        if (model.getImgurl()==null) {
+            holder.doc_image.setImageResource(R.drawable.blankprofile_round);
         } else {
             Glide.with(context).load(model.getImgurl()).into(holder.doc_image);
         }

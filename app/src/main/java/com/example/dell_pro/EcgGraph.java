@@ -1,8 +1,13 @@
 package com.example.dell_pro;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +24,17 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class EcgGraph extends AppCompatActivity {
 
     DatabaseReference reference;
+
+    OutputStream outputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,5 +146,55 @@ public class EcgGraph extends AppCompatActivity {
         gridLabel.setHorizontalAxisTitleTextSize(50);
         gridLabel.setVerticalAxisTitle("Amplitude (in mV)");
         gridLabel.setVerticalAxisTitleTextSize(50);
+
+        //graph.takeSnapshotAndShare(this,"example","GraphView");
+        //final Bitmap bitmap = graph.takeSnapshot();
+
+        /*final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save Image to Mobile")
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Bitmap bitmap = graph.takeSnapshot();
+                        saveImage(bitmap);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing
+                    }
+                });
+
+        builder.show();*/
     }
+
+    /*private void saveImage(Bitmap bitmap) {
+        File filepath = Environment.getExternalStorageDirectory();
+        File dir = new File(filepath.getAbsolutePath() + "/Care/");
+
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        File file = new File(dir, System.currentTimeMillis() + ".png");
+
+        try {
+            outputStream = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+        try {
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }
