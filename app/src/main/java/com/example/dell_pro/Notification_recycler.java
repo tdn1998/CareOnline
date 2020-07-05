@@ -1,5 +1,7 @@
 package com.example.dell_pro;
         import android.content.Context;
+        import android.content.Intent;
+        import android.net.Uri;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -20,6 +22,18 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
     LayoutInflater inflater;
     List<News> news;
 
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener
+    {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
+        mListener = listener;
+    }
+
     public Notification_recycler(Context ctx, List<News> news){
         this.inflater = LayoutInflater.from(ctx);
         this.news = news;
@@ -29,7 +43,7 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.notification_elements,parent,false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,mListener);
     }
 
     @Override
@@ -51,7 +65,7 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
         TextView newsTitle,Author,Date;
         ImageView coverImage;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             newsTitle = itemView.findViewById(R.id.newsTitle);
@@ -59,14 +73,20 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
             coverImage = itemView.findViewById(R.id.coverImage);
             Date = itemView.findViewById(R.id.Date);
 
-            // handle onClick
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "Do Something With this Click", Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    if (listener != null)
+                    {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION)
+                        {
+                            listener.onItemClick(position);
+                        }
+                    }
                 }
             });
+
         }
     }
 }

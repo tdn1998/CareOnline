@@ -15,6 +15,11 @@ public class News {
         this.date = date;
     }
 
+    public String giveUrl()
+    {
+        return this.newsUrl;
+    }
+
     public String getTitle() {
         return title;
     }

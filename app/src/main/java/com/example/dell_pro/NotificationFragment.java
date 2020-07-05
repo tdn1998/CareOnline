@@ -1,5 +1,7 @@
 package com.example.dell_pro;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,10 +32,10 @@ import java.util.List;
 
 public class NotificationFragment extends Fragment {
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     List<News> newsList;
     private static String JSON_URL = "http://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=01148580376441d49c8e12e36c2b8970";
-    Notification_recycler notification_recycler;
+    private Notification_recycler notification_recycler;
 
     @Nullable
     @Override
@@ -73,6 +75,15 @@ public class NotificationFragment extends Fragment {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 notification_recycler = new Notification_recycler(getContext(), newsList);
                 recyclerView.setAdapter(notification_recycler);
+                notification_recycler.setOnItemClickListener(new Notification_recycler.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        String urlString = newsList.get(position).giveUrl();
+                        Uri uri = Uri.parse(urlString); // missing 'http://' will cause crashed
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
             }
             }, new Response.ErrorListener() {
             @Override
@@ -81,7 +92,9 @@ public class NotificationFragment extends Fragment {
             }
         }
             );
+
         queue.add(jsonObjectRequest);
+
     }
 }
 
