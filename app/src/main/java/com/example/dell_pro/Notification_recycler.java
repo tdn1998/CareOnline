@@ -1,22 +1,19 @@
 package com.example.dell_pro;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import com.android.volley.AuthFailureError;
-        import com.example.dell_pro.Model.News;
-        import com.squareup.picasso.Picasso;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import java.util.List;
+import com.example.dell_pro.Model.News;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class Notification_recycler extends RecyclerView.Adapter<Notification_recycler.ViewHolder> {
     LayoutInflater inflater;
@@ -43,7 +40,7 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.notification_elements,parent,false);
-        return new ViewHolder(view,mListener);
+        return new ViewHolder(view, mListener);
     }
 
     @Override
@@ -61,7 +58,7 @@ public class Notification_recycler extends RecyclerView.Adapter<Notification_rec
         return news.size();
     }
 
-    public  class ViewHolder extends  RecyclerView.ViewHolder{
+    public static class ViewHolder extends  RecyclerView.ViewHolder{
         TextView newsTitle,Author,Date;
         ImageView coverImage;
 
