@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="RemindTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="DeleteAlarmDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="TimePicker" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="CustomChipChoiceRemind" parent="@style/Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@drawable/background_color_chip_state_remind</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="checkedIcon">@drawable/done</item>
+        <item name="android:textColor">@drawable/text_color_chip_state_remind</item>
+        <item name="chipStartPadding">20dp</item>
+        <item name="chipEndPadding">20dp</item>
+    </style>
+
+</resources>

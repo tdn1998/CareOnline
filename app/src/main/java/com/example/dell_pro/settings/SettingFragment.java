@@ -1,5 +1,6 @@
 package com.example.dell_pro.settings;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,10 +27,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -36,13 +43,10 @@ public class SettingFragment extends Fragment {
 
     private MaterialTextView display_name, display_email;
     private CircleImageView view;
-    private ImageView verified;
     private FirebaseUser user;
     private ProgressBar progress;
 
-    private RecyclerView mRecyclerView;
     private SettingAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
     @Override
@@ -53,28 +57,28 @@ public class SettingFragment extends Fragment {
         display_email = v.findViewById(R.id.setting_email);
         progress=v.findViewById(R.id.setting_progress);
         view = v.findViewById(R.id.setting_image);
-        verified = v.findViewById(R.id.verification);
+        ImageView verified = v.findViewById(R.id.verification);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user.isEmailVerified()) {
-            verified.setVisibility(View.VISIBLE);
-        } else {
-            verified.setVisibility(View.INVISIBLE);
+        if (user != null) {
+            if (user.isEmailVerified()) {
+                verified.setVisibility(View.VISIBLE);
+            } else {
+                verified.setVisibility(View.INVISIBLE);
+            }
         }
 
         final ArrayList<SettingItem> settingList = new ArrayList<>();
         settingList.add(new SettingItem(R.drawable.blankprofile_round, "See Profile", "Change Details of User"));
         settingList.add(new SettingItem(R.drawable.verified, "Verify User", "Check Email for Verification"));
-        settingList.add(new SettingItem(R.drawable.mail, "Reset Email", "Change Email of User Account"));
-        settingList.add(new SettingItem(R.drawable.key, "Reset Password", "Change Password of User Account"));
         settingList.add(new SettingItem(R.drawable.help_icon, "Help", "FAQs, Privacy Policy"));
         settingList.add(new SettingItem(R.drawable.delete, "Delete Account", "Delete User Account and All its Data"));
         settingList.add(new SettingItem(R.drawable.signout_icon, "Sign Out", "User Sign out and Close all"));
 
-        mRecyclerView = v.findViewById(R.id.recycle_settings);
+        RecyclerView mRecyclerView = v.findViewById(R.id.recycle_settings);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new SettingAdapter(settingList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -103,19 +107,39 @@ public class SettingFragment extends Fragment {
                         email_verify();
                         break;
                     case 2:
-                        reset_email();
-                        break;
-                    case 3:
-                        reset_password();
-                        break;
-                    case 4:
                         help();
                         break;
-                    case 5:
-                        delete_account();
+                    case 3:
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+                        builder.setTitle("Do you want to Delete Account?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        delete_account();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //do nothing
+                                    }
+                                }).show();
                         break;
-                    case 6:
-                        user_signout();
+                    case 4:
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+                        builder1.setTitle("Do you want to Sign Out?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        user_signout();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //do nothing
+                                    }
+                                }).show();
                         break;
                 }
             }
@@ -123,15 +147,61 @@ public class SettingFragment extends Fragment {
     }
 
     private void delete_account() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String uid = user.getUid();
+
+        final DatabaseReference mDatabase;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+        //there is no way to delete the profile pic folder
+        if(user.getPhotoUrl()==null){
+            //do nothing
+        } else{
+            StorageReference profiledataref = FirebaseStorage.getInstance().getReferenceFromUrl(Objects.requireNonNull(user.getPhotoUrl()).toString());
+            profiledataref.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Profile Data Storage Deleted", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        mDatabase.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Profile Data Deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Account Deleted", Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(getContext(), LoginActivity.class);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent1);
+                    Objects.requireNonNull(getActivity()).finish();
+                } else {
+                    Toast.makeText(getContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void help() {
-    }
-
-    private void reset_password() {
-    }
-
-    private void reset_email() {
     }
 
     private void user_signout() {
@@ -139,7 +209,7 @@ public class SettingFragment extends Fragment {
         Intent intent1 = new Intent(getContext(), LoginActivity.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent1);
-        getActivity().finish();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
     private void email_verify() {
@@ -155,7 +225,7 @@ public class SettingFragment extends Fragment {
                                 Intent intent = new Intent(getContext(), LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                getActivity().finish();
+                                Objects.requireNonNull(getActivity()).finish();
                                 Toast.makeText(getContext(), "Verification Email Sent", Toast.LENGTH_SHORT).show();
                             }
                         }

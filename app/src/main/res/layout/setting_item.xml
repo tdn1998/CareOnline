@@ -39,7 +39,6 @@
                 android:id="@+id/line2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/line1"
                 android:text="Line 2"
                 android:textColor="@color/grey"
                 android:textSize="10sp"

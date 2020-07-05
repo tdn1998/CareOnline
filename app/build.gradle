@@ -6,7 +6,7 @@ android {
     buildToolsVersion '30.0.0'
     defaultConfig {
         applicationId "com.example.dell_pro"
-        minSdkVersion 23
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -48,9 +48,14 @@ dependencies {
 
     implementation 'com.karumi:dexter:6.2.0'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-
+    
     implementation 'com.android.volley:volley:1.1.1'
-
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.jjoe64:graphview:4.2.2'
+
+    implementation project(path: ':map')
+    implementation project(path: ':bmi')
+    implementation project(path: ':remind')
+    implementation project(path: ':chat_bot')
 
 }

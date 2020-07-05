@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class DatePickerFragment extends AppCompatDialogFragment {
     @NonNull
@@ -18,7 +19,7 @@ public class DatePickerFragment extends AppCompatDialogFragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        return new DatePickerDialog(getActivity(),
+        return new DatePickerDialog(Objects.requireNonNull(getActivity()),
                 (DatePickerDialog.OnDateSetListener) getActivity(),year,month,day);
     }
 }

@@ -1,2 +1,3 @@
-include ':app'
+include ':chat_bot'
+include ':app', ':map', ':bmi', ':remind'
 rootProject.name='dell_pro'

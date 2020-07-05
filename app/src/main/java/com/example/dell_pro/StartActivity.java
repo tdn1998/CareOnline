@@ -54,7 +54,8 @@ public class StartActivity extends AppCompatActivity {
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.SEND_SMS,
-                        Manifest.permission.CALL_PHONE)
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.RECORD_AUDIO)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {

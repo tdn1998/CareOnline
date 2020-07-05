@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingViewHolder> {
 
-    private ArrayList<SettingItem> mSettingList;
+    private final ArrayList<SettingItem> mSettingList;
     private OnItemClickListener mListener;
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -29,8 +29,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
     @Override
     public SettingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.setting_item,parent,false);
-        SettingViewHolder svh = new SettingViewHolder(v,mListener);
-        return svh;
+        return new SettingViewHolder(v,mListener);
     }
 
     public SettingAdapter(ArrayList<SettingItem>settingList){
@@ -53,9 +52,9 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
 
     public static class SettingViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView mImageView;
-        public TextView mTextView1;
-        public TextView mTextView2;
+        public final ImageView mImageView;
+        public final TextView mTextView1;
+        public final TextView mTextView2;
 
         public SettingViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);

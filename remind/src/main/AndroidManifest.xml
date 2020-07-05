@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.reminder.simplealarms">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application>
+
+        <activity
+            android:name="com.example.reminder.ui.RemindActivity"
+            android:theme="@style/RemindTheme" />
+
+        <activity
+            android:name="com.example.reminder.ui.AddEditReminderActivity"
+            android:theme="@style/RemindTheme" />
+
+        <activity
+            android:name="com.example.reminder.ui.ReminderLandingPageActivity"
+            android:theme="@style/RemindTheme" />
+
+        <service android:name="com.example.reminder.service.LoadReminderService" />
+
+        <receiver android:name="com.example.reminder.service.LoadReminderReceiver" />
+
+        <receiver android:name="com.example.reminder.service.ReminderReceiver" />
+
+        <receiver
+            android:name="com.example.reminder.service.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="${bootPriority}">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

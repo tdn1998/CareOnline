@@ -29,22 +29,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:theme="@style/Maps"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/Main" />
+        <activity android:name=".ReportActivity"/>
         <activity android:name=".authentication.CreateAccountActivity" />
         <activity android:name=".authentication.LoginActivity" />
         <activity android:name=".authentication.NewProfileActivity" />
+        <activity android:name=".EcgGraph" android:screenOrientation="landscape"/>
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

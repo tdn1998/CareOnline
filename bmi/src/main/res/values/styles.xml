@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BMITheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/violet</item>
+        <item name="colorPrimaryDark">@color/violet</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomChipChoiceBMI" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@drawable/background_color_chip_state_bmi</item>
+        <item name="android:textColor">@drawable/text_color_chip_state_bmi</item>
+        <item name="chipStartPadding">40dp</item>
+        <item name="chipEndPadding">40dp</item>
+    </style>
+
+</resources>
