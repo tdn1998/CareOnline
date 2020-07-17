@@ -164,10 +164,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (user.isEmailVerified()) {
-                    //Intent intent = new Intent(getContext(), HealthActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent = new Intent(getContext(), HowToUse.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     Toast.makeText(getContext(), "How to Use?", Toast.LENGTH_SHORT).show();
-                    //startActivity(intent);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), "Verify the Email to Use its Services", Toast.LENGTH_SHORT).show();
                 }
