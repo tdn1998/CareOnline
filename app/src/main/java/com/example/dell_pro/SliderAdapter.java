@@ -11,7 +11,7 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
 
-public class SliderAdapter extends SliderViewAdapter<SliderViewHolder> {
+public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderViewHolder> {
     Context context;
     List<ImageSliderModel> imageSliderModelList;
 
@@ -37,13 +37,15 @@ public class SliderAdapter extends SliderViewAdapter<SliderViewHolder> {
     public int getCount() {
         return imageSliderModelList.size();
     }
-}
-class SliderViewHolder extends SliderViewAdapter.ViewHolder {
-    ImageView sliderImageView;
-    TextView sliderText;
-    public SliderViewHolder(View itemView) {
-        super(itemView);
-        sliderImageView=itemView.findViewById(R.id.slider_image_view);
-        sliderText=itemView.findViewById(R.id.slider_text);
+
+    class SliderViewHolder extends SliderViewAdapter.ViewHolder {
+        ImageView sliderImageView;
+        TextView sliderText;
+
+        public SliderViewHolder(View itemView) {
+            super(itemView);
+            sliderImageView = itemView.findViewById(R.id.slider_image_view);
+            sliderText = itemView.findViewById(R.id.slider_text);
+        }
     }
 }

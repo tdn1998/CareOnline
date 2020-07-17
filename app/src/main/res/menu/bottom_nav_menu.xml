@@ -8,8 +8,8 @@
         android:title="Home" />
     <item
         android:id="@+id/bottom_notification"
-        android:icon="@drawable/notifications_icon"
-        android:title="Notification" />
+        android:icon="@drawable/news"
+        android:title="News" />
 
     <item
         android:id="@+id/bottom_settings"

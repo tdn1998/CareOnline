@@ -61,6 +61,7 @@ public class DocNewProfileActivity extends AppCompatActivity implements DatePick
     private MaterialTextView date_picker;
     private ProgressDialog dialog;
     private ProgressBar progress;
+    private MaterialTextView verified;
 
     private StorageReference profiledataref;
     private StorageTask task;
@@ -88,7 +89,7 @@ public class DocNewProfileActivity extends AppCompatActivity implements DatePick
         spinner2 = findViewById(R.id.doc_spinner_bldgrp);
         spinner3 = findViewById(R.id.doc_spinner_status);
         date_picker = findViewById(R.id.date_select);
-        MaterialTextView verified = findViewById(R.id.verified_user);
+        verified = findViewById(R.id.verified_user);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -96,14 +97,6 @@ public class DocNewProfileActivity extends AppCompatActivity implements DatePick
         String uid = user.getUid();
         profiledataref = FirebaseStorage.getInstance().getReference("profilepics/").child("docs/").child(uid);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor").child(uid);
-
-        if (user.isEmailVerified()) {
-            verified.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "User is Verified", Toast.LENGTH_SHORT).show();
-        } else {
-            verified.setVisibility(View.INVISIBLE);
-            Toast.makeText(this, "User is not Verified", Toast.LENGTH_SHORT).show();
-        }
 
         field_data_setting();
         loaduserdata();
@@ -242,6 +235,19 @@ public class DocNewProfileActivity extends AppCompatActivity implements DatePick
                         if (dataSnapshot.child("alma_mater").exists()) {
                             String al = dataSnapshot.child("alma_mater").getValue(String.class);
                             doc_alma.setText(al);
+                        }
+
+                        if(dataSnapshot.child("is_verified").exists()){
+                            String is_verified= dataSnapshot.child("is_verified").getValue(String.class);
+
+                            assert is_verified != null;
+                            if (is_verified.equals("verified")) {
+                                verified.setVisibility(View.VISIBLE);
+                                Toast.makeText(DocNewProfileActivity.this, "Doctor is Verified", Toast.LENGTH_SHORT).show();
+                            } else {
+                                verified.setVisibility(View.INVISIBLE);
+                                Toast.makeText(DocNewProfileActivity.this, "Doctor is not Verified", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                     }
@@ -448,6 +454,7 @@ public class DocNewProfileActivity extends AppCompatActivity implements DatePick
         mDatabase.child("super_special").setValue(sup_sp);
         mDatabase.child("alma_mater").setValue(alma);
         mDatabase.child("status").setValue(toString2);
+        mDatabase.child("is_verified").setValue("not_verified");
 
 
         mDatabase.child("id").setValue(user.getUid());

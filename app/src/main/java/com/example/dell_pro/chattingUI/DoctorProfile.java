@@ -1,14 +1,17 @@
 package com.example.dell_pro.chattingUI;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.dell_pro.R;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +31,8 @@ public class DoctorProfile extends AppCompatActivity {
     private DatabaseReference reference;
     private FirebaseUser user;
 
+    private MaterialTextView verified;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class DoctorProfile extends AppCompatActivity {
         ph_no = findViewById(R.id.phno);
         special = findViewById(R.id.special);
         sup_special = findViewById(R.id.sup_special);
+        verified = findViewById(R.id.verified_doctor);
 
         //status.setText(id);
 
@@ -71,6 +77,16 @@ public class DoctorProfile extends AppCompatActivity {
                 sup_special.append(susp);
 
                 Picasso.get().load(imgurl).into(image);
+
+                String is_verified = Objects.requireNonNull(dataSnapshot.child("is_verified").getValue()).toString();
+
+                if (is_verified.equals("verified")) {
+                    verified.setVisibility(View.VISIBLE);
+                    Toast.makeText(DoctorProfile.this, "Doctor is Verified", Toast.LENGTH_SHORT).show();
+                } else {
+                    verified.setVisibility(View.INVISIBLE);
+                    Toast.makeText(DoctorProfile.this, "Doctor is not Verified", Toast.LENGTH_SHORT).show();
+                }
 
             }
 

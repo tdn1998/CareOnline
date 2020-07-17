@@ -23,10 +23,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new ChatsFragment();
+                fragment = new AppointmentsFragment();
                 break;
             case 1:
-                fragment = new AppointmentsFragment();
+                fragment = new AllUsersFragment();
                 break;
         }
         assert fragment != null;
@@ -38,9 +38,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Recent Chats";
+                return "Appointments";
             case 1:
-                return "Users";
+                return "All Users";
         }
         return null;
     }

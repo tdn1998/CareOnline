@@ -25,6 +25,21 @@
         android:scaleType="centerCrop"
         android:src="@drawable/doctor_interaction" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/verified_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doc_profile_image"
+        android:layout_marginTop="10dp"
+        android:drawableEnd="@drawable/verified"
+        android:drawableTint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="5dp"
+        android:text="Verified Doctor"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/doc_profile_name"
         android:layout_width="wrap_content"

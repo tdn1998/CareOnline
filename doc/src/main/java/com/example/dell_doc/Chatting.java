@@ -6,6 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
@@ -49,7 +52,7 @@ public class Chatting extends AppCompatActivity {
     private ImageButton button_send, button_image;
     private FirebaseUser user;
     private DatabaseReference msg_ref;
-    String id;
+    private String id;
 
     private RecyclerView view;
     private List<Chat> list;
@@ -284,6 +287,28 @@ public class Chatting extends AppCompatActivity {
                         }
                     });
 
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.chat_report, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.report:
+                Intent intent = new Intent(Chatting.this, ReportActivity.class);
+                intent.putExtra("id", id);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -60,9 +60,6 @@ public class DocMainActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(DocMainActivity.this, DocNewProfileActivity.class);
                 startActivity(intent1);
                 return true;
-            case R.id.appointments:
-                Toast.makeText(this, "Not Applicable", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
