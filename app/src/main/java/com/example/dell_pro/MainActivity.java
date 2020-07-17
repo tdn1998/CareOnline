@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements PanicFragment.Pan
     private long backpressedtime;
     private Toast backtoast;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
