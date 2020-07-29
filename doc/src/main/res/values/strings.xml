@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Doc</string>
+    <string name="app_name">Care Online Doctor</string>
 
     <string-array name="gender">
         <item>Gender</item>

@@ -1,4 +1,4 @@
 include ':doc'
 include ':chat_bot'
 include ':app', ':map', ':bmi', ':remind'
-rootProject.name='dell_pro'
+rootProject.name='CareOnline'
